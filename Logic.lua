@@ -12,7 +12,6 @@ Logic.ORDER = { "PaTiHeal", "PaTiAuras", "PaTiTank", "PaTiGroup", "PaTiQuest", "
 -- Position (point, relativePoint, x, y) is written by the PaTiShared window, not listed here.
 Logic.DEFAULTS = {
     opacity = 0.75,
-    snapWindows = true,
     locked = false,
     scale = 1,
     language = "auto",
@@ -30,6 +29,11 @@ end
 function Logic.RestoreDefaults(db)
     for key, value in pairs(Logic.DEFAULTS) do db[key] = value end
     return db
+end
+
+-- Status colour of a window line: green while shown, grey while hidden (PaTi blue stays the suite accent).
+function Logic.StateColor(shown)
+    return shown and "Success" or "TextMuted"
 end
 
 -- "PaTiHeal" → "Heal".

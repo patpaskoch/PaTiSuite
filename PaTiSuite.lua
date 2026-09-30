@@ -31,9 +31,13 @@ local function newRow(index)
     row:SetSize(WIDTH - 2 * PAD, LINE)
     row:SetPoint("TOPLEFT", PAD, -(UI.Sizes.HeaderHeight + UI.Spacing.SM + (index - 1) * LINE))
     row:RegisterForClicks("LeftButtonUp")
-    local hover = row:CreateTexture(nil, "HIGHLIGHT")
+    -- Hover like the PaTiShared popup: a background texture under the text (a HIGHLIGHT layer would cover it).
+    local hover = row:CreateTexture(nil, "BACKGROUND")
     hover:SetAllPoints()
     hover:SetColorTexture(UI.Color("PanelHover"))
+    hover:Hide()
+    row:HookScript("OnEnter", function() hover:Show() end)
+    row:HookScript("OnLeave", function() hover:Hide() end)
     row.dot = row:CreateTexture(nil, "ARTWORK")
     row.dot:SetSize(8, 8)
     row.dot:SetPoint("LEFT", UI.Spacing.SM, 0)
@@ -87,10 +91,11 @@ refresh = function()
         local row = rows[index] or newRow(index)
         local shown = Logic.IsShown(entry.frame)
         row.entry = entry
-        row.dot:SetColorTexture(UI.Color(shown and "Accent" or "TextMuted"))
+        row.dot:SetColorTexture(UI.Color(Logic.StateColor(shown)))
         row.name:SetText(Logic.Label(entry.name))
         row.name:SetTextColor(UI.Color(shown and "Text" or "TextMuted"))
         row.state:SetText(shown and L.SHOWN or L.HIDDEN)
+        row.state:SetTextColor(UI.Color(Logic.StateColor(shown)))
         row.tooltipLines = { entry.name, shown and L.CLICK_TO_HIDE or L.CLICK_TO_SHOW }
         row:Show()
     end
@@ -191,7 +196,8 @@ window:SetMenu(function()
     if not DB then return {} end
     return {
         { text = "SETTINGS", onClick = openSettings },
-        { text = window:IsLocked() and "UNLOCK" or "LOCK", onClick = function() window:SetLocked(not window:IsLocked()) end },
+        { text = window:IsLocked() and "UNLOCK" or "LOCK",
+            onClick = function() window:SetLocked(not window:IsLocked()) end },
         { text = "RESET_POSITION", onClick = resetPosition },
         { text = "HIDE", onClick = function() setShown(false) end },
     }

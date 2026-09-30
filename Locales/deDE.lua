@@ -6,8 +6,8 @@ ns.Locales.deDE = L
 
 L.SHOW_ALL = "Alle anzeigen"
 L.HIDE_ALL = "Alle ausblenden"
-L.SHOWN = "sichtbar"
-L.HIDDEN = "ausgeblendet"
+L.SHOWN = "Angezeigt"
+L.HIDDEN = "Ausgeblendet"
 L.CLICK_TO_HIDE = "Klicken, um dieses Fenster auszublenden."
 L.CLICK_TO_SHOW = "Klicken, um dieses Fenster anzuzeigen."
 L.NO_WINDOWS = "Kein PaTi-Addon-Fenster gefunden."
