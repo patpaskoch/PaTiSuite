@@ -1,0 +1,19 @@
+-- PaTiSuite strings, Deutsch. One key per line: L.KEY = "Text".
+local _, ns = ...
+ns.Locales = ns.Locales or {}
+local L = ns.Locales.deDE or {}
+ns.Locales.deDE = L
+
+L.SHOW_ALL = "Alle anzeigen"
+L.HIDE_ALL = "Alle ausblenden"
+L.SHOWN = "sichtbar"
+L.HIDDEN = "ausgeblendet"
+L.CLICK_TO_HIDE = "Klicken, um dieses Fenster auszublenden."
+L.CLICK_TO_SHOW = "Klicken, um dieses Fenster anzuzeigen."
+L.NO_WINDOWS = "Kein PaTi-Addon-Fenster gefunden."
+L.BLOCKED_COMBAT = "%s: im Kampf nicht möglich."
+L.RESET_POSITION = "Position zurücksetzen"
+L.LOCK_WINDOW = "Fenster sperren"
+L.SCALE = "Größe"
+L.HIDDEN_HINT = "ausgeblendet. /psuite show zeigt es wieder."
+L.VERSION = "Version %s"

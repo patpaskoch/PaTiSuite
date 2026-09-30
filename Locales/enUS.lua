@@ -1,0 +1,20 @@
+-- PaTiSuite strings, English (source and fallback). One key per line: L.KEY = "Text".
+local _, ns = ...
+ns.Locales = ns.Locales or {}
+local L = ns.Locales.enUS or {}
+ns.Locales.enUS = L
+
+L.SHOW_ALL = "Show all"
+L.HIDE_ALL = "Hide all"
+L.SHOWN = "shown"
+L.HIDDEN = "hidden"
+L.CLICK_TO_HIDE = "Click to hide this window."
+L.CLICK_TO_SHOW = "Click to show this window."
+L.NO_WINDOWS = "No PaTi addon window found."
+L.BLOCKED_COMBAT = "%s: not possible in combat."
+L.RESET_POSITION = "Reset position"
+L.LOCK_WINDOW = "Lock window"
+L.SCALE = "Scale"
+L.HIDDEN_HINT = "hidden. /psuite show brings it back."
+L.HELP = "/psuite show, hide, showall, hideall, lock, unlock, reset, settings, debug, version"
+L.VERSION = "version %s"

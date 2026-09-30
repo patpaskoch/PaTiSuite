@@ -1,0 +1,13 @@
+## Interface: 16001
+## Title: PaTiSuite
+## Notes: Optional control panel: show or hide the windows of your installed PaTi addons
+## Notes-deDE: Optionale Steuerung: Fenster der installierten PaTi-Addons anzeigen oder ausblenden
+## Author: PaTi
+## Version: 0.1.0
+## SavedVariablesPerCharacter: PaTiSuiteDB
+
+Shared\Shared.xml
+Locales\enUS.lua
+Locales\deDE.lua
+Logic.lua
+PaTiSuite.lua
