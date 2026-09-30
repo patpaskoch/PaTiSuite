@@ -1,5 +1,5 @@
 -- PaTiSuite: an optional remote control for the PaTi windows — one row per installed addon to show or hide its
--- main window, plus "show all" / "hide all". No gameplay logic; every addon works the same without it.
+-- main window, plus one "show all" / "hide all" button. No gameplay logic; every addon works the same without it.
 -- It only uses the frames in _G.PaTiSuiteWindows (registered by each addon's embedded PaTiShared) and each addon's
 -- own show/hide rules (window.suiteSetShown), so combat restrictions stay the addon's.
 local addonName, ns = ...
@@ -19,7 +19,7 @@ end
 
 -- Window ---------------------------------------------------------------------------------------
 
-local WIDTH, LINE, PAD, BUTTON_WIDTH = 220, 22, UI.Spacing.MD, 98
+local WIDTH, LINE, PAD = 220, 22, UI.Spacing.MD
 local window = UI.CreateWindow("PaTiSuiteFrame", "PaTiSuite", WIDTH, 120)
 local rows = {}
 local entries = {}
@@ -66,8 +66,8 @@ local function setAll(shown)
     refresh()
 end
 
-local showAll = UI.CreateButton(window, "SHOW_ALL", BUTTON_WIDTH, function() setAll(true) end)
-local hideAll = UI.CreateButton(window, "HIDE_ALL", BUTTON_WIDTH, function() setAll(false) end)
+-- One button for both: "Hide all" while every window is shown, otherwise "Show all" (owner wish 2026-09-30).
+local allButton = UI.CreateButton(window, "SHOW_ALL", WIDTH - 2 * PAD, function() setAll(Logic.AllTarget(entries)) end)
 local empty = window:CreateFontString(nil, "OVERLAY", UI.Fonts.Muted)
 empty:SetPoint("TOPLEFT", PAD, -(UI.Sizes.HeaderHeight + UI.Spacing.SM + 3))
 empty:SetPoint("RIGHT", -PAD, 0)
@@ -104,12 +104,10 @@ refresh = function()
     empty:SetShown(#entries == 0)
     local listHeight = math.max(#entries, #entries == 0 and 2 or 0) * LINE
     local buttonsTop = UI.Sizes.HeaderHeight + UI.Spacing.SM + listHeight + UI.Spacing.SM
-    showAll:ClearAllPoints()
-    showAll:SetPoint("TOPLEFT", PAD, -buttonsTop)
-    hideAll:ClearAllPoints()
-    hideAll:SetPoint("TOPRIGHT", -PAD, -buttonsTop)
-    showAll:SetEnabled(#entries > 0)
-    hideAll:SetEnabled(#entries > 0)
+    UI.BindText(allButton.label, Logic.AllTarget(entries) and "SHOW_ALL" or "HIDE_ALL")
+    allButton:ClearAllPoints()
+    allButton:SetPoint("TOPLEFT", PAD, -buttonsTop)
+    allButton:SetEnabled(#entries > 0)
     window:SetHeight(buttonsTop + UI.Sizes.ButtonHeight + PAD)
 end
 

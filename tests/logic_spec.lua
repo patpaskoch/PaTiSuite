@@ -101,3 +101,29 @@ describe("Logic.StateColor", function()
         assert.equal("TextMuted", Logic.StateColor(false))
     end)
 end)
+
+describe("Logic.AllTarget (one button for show all / hide all)", function()
+    it("hides all when every window is shown, otherwise shows all; one click flips the label", function()
+        local Logic = load()
+        local heal, tank = frame(true, { suite = true }), frame(false)
+        local entries = { { name = "PaTiHeal", frame = heal }, { name = "PaTiTank", frame = tank } }
+        assert.is_true(Logic.AllTarget(entries)) -- one hidden → "Show all"
+        Logic.SetAll(entries, Logic.AllTarget(entries), false)
+        assert.is_true(heal.shown and tank.shown)
+        assert.is_false(Logic.AllTarget(entries)) -- all shown → "Hide all"
+        Logic.SetAll(entries, Logic.AllTarget(entries), false)
+        assert.is_false(heal.shown or tank.shown)
+        assert.is_true(Logic.AllTarget(entries))
+    end)
+
+    it("keeps the combat rule: a blocked window stays, the button then offers show all", function()
+        local Logic = load()
+        local heal, tank = frame(true, { suite = true, blocked = true }), frame(true)
+        local entries = { { name = "PaTiHeal", frame = heal }, { name = "PaTiTank", frame = tank } }
+        assert.same({ "PaTiHeal" }, Logic.SetAll(entries, Logic.AllTarget(entries), true))
+        assert.is_true(heal.shown)
+        assert.is_false(tank.shown)
+        assert.is_true(Logic.AllTarget(entries))
+        assert.is_true(Logic.AllTarget({}))
+    end)
+end)

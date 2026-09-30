@@ -92,6 +92,15 @@ function Logic.SetAll(entries, shown, inCombat)
     return blocked
 end
 
+-- What the single "all" button does now: true = show all (at least one window is hidden), false = hide all
+-- (every window is shown). No windows: true (the button is disabled then).
+function Logic.AllTarget(entries)
+    for _, entry in ipairs(entries) do
+        if not Logic.IsShown(entry.frame) then return true end
+    end
+    return #entries == 0
+end
+
 -- One click on a row: visible → hide, hidden → show. Returns true if done.
 function Logic.Toggle(entry, inCombat)
     return Logic.SetShown(entry.frame, not Logic.IsShown(entry.frame), inCombat)

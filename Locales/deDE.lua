@@ -4,7 +4,7 @@ ns.Locales = ns.Locales or {}
 local L = ns.Locales.deDE or {}
 ns.Locales.deDE = L
 
-L.SHOW_ALL = "Alle anzeigen"
+L.SHOW_ALL = "Alle einblenden"
 L.HIDE_ALL = "Alle ausblenden"
 L.SHOWN = "Angezeigt"
 L.HIDDEN = "Ausgeblendet"

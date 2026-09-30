@@ -52,26 +52,35 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
   - ✅ VERIFIED 2026-09-30
 - [x] PT-SUITE-041 Klick auf eine Zeile blendet ein einzelnes sichtbares Fenster aus
   - ✅ VERIFIED 2026-09-30
-- [x] PT-SUITE-042 „Alle anzeigen“ blendet alle PaTi-Fenster ein
+- ~~PT-SUITE-042 „Alle anzeigen“ blendet alle PaTi-Fenster ein~~
   - ✅ VERIFIED 2026-09-30
-- [x] PT-SUITE-043 „Alle ausblenden“ blendet alle PaTi-Fenster aus, das Steuerfenster selbst bleibt sichtbar
+  - RETIRED 2026-09-30 – die zwei Buttons wurden durch einen dynamischen Button ersetzt (PT-SUITE-048).
+- ~~PT-SUITE-043 „Alle ausblenden“ blendet alle PaTi-Fenster aus, das Steuerfenster selbst bleibt sichtbar~~
   - ✅ VERIFIED 2026-09-30
+  - RETIRED 2026-09-30 – ersetzt durch PT-SUITE-048.
 - [ ] PT-SUITE-044 `/psuite showall` und `/psuite hideall` wie die Buttons
-- [ ] PT-SUITE-045 Im Kampf „Alle ausblenden“: Heal, Auras, Group bleiben und werden genannt
+- [ ] PT-SUITE-045 Im Kampf „Alle ausblenden“ (Button oder `/psuite hideall`): Heal, Auras, Group bleiben und werden genannt
   („Heal: im Kampf nicht möglich“), Tank/Quest/Dungeon/Alerts werden ausgeblendet
 - [ ] PT-SUITE-046 Im Kampf Klick auf die Heal-, Auras- oder Group-Zeile ändert nichts und nennt den Grund
 - [ ] PT-SUITE-047 Ohne PaTiSuite verhalten sich alle anderen Addons unverändert
+- [ ] PT-SUITE-048 Ein Button für alle: sind alle Fenster sichtbar, heißt er „Alle ausblenden“ und blendet alle aus
+  (das Steuerfenster bleibt); ist mindestens eines ausgeblendet, heißt er „Alle einblenden“ und blendet alle ein;
+  die Beschriftung wechselt nach jedem Klick und nach einzelnem Ein-/Ausblenden
+- [ ] PT-SUITE-049 Einzelnes Ein-/Ausblenden (PT-SUITE-040/041) funktioniert nach dem Umbau weiter
 
 ## UI
 
-- [ ] PT-SUITE-050 Hover über einer Zeile: Hintergrund dunkler, Text hell und lesbar
+- [x] PT-SUITE-050 Hover über einer Zeile: Hintergrund dunkler, Text hell und lesbar
   - ❌ FAIL 2026-09-30
   - Hover-Fläche verdeckte den Text (unlesbar).
   - 🔧 FIX IMPLEMENTED 2026-09-30
   - Hover-Fläche liegt jetzt hinter dem Text.
-  - MANUAL RETEST REQUIRED
-- [ ] PT-SUITE-051 Angezeigtes Fenster: grüner Punkt und „Angezeigt“
-- [ ] PT-SUITE-052 Ausgeblendetes Fenster: grauer Punkt und „Ausgeblendet“, Name grau
+  - ✅ VERIFIED 2026-09-30
+  - Retest: Lesbarkeit und Farben passen.
+- [x] PT-SUITE-051 Angezeigtes Fenster: grüner Punkt und „Angezeigt“
+  - ✅ VERIFIED 2026-09-30
+- [x] PT-SUITE-052 Ausgeblendetes Fenster: grauer Punkt und „Ausgeblendet“, Name grau
+  - ✅ VERIFIED 2026-09-30
 - [ ] PT-SUITE-053 Tooltip der Zeile lesbar: Addon-Name und „Klicken, um dieses Fenster auszublenden/anzuzeigen.“
 
 ## SavedVariables
