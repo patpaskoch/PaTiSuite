@@ -4,6 +4,7 @@
 ## Notes-deDE: Optionale Steuerung: Fenster der installierten PaTi-Addons anzeigen oder ausblenden
 ## Author: PaTi
 ## Version: 0.1.0
+## IconTexture: Interface\AddOns\PaTiSuite\Media\icon
 ## SavedVariablesPerCharacter: PaTiSuiteDB
 
 Shared\Shared.xml

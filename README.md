@@ -1,5 +1,7 @@
 # PaTiSuite
 
+<img src="assets/icon-128.png" width="96" alt="PaTiSuite icon">
+
 A tiny, optional control panel for World of Warcraft: Forever (Interface 16001): one line per installed PaTi addon
 to show or hide its window, plus **Show all** / **Hide all**. It is a remote control, nothing more — every PaTi addon
 works exactly the same without it.
@@ -31,7 +33,6 @@ nothing else). PaTiSuite reads that list; it never reads settings or game data o
 
 ## Known limitations
 - Not yet tested in game.
-- No icon yet (design task).
 
 ## License
 MIT — see [LICENSE](LICENSE). Copyright (c) 2026 Patrick Koch.

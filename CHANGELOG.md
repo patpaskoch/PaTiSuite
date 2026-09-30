@@ -9,5 +9,6 @@ Format: `## [Unreleased]` / `## [x.y.z] - YYYY-MM-DD` with Added, Changed, Fixed
   in one short message and left alone.
 - Settings: language, scale, lock, panel opacity, snapping; ••• menu with Settings, Lock, Reset position, Hide;
   `/psuite`, `/patisuite`. English texts, German translation. MIT license.
+- Icon (the owner-approved PaTiSuite emblem): `Media/icon.tga` for the AddOns list, platform images in `assets/`.
 ### Known Issues
-- Not tested in game yet. No icon yet (owner/design task).
+- Not tested in game yet.
