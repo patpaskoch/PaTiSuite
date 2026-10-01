@@ -19,6 +19,19 @@ works exactly the same without it.
 
 No test mode: the panel only shows your real windows, there is nothing to simulate.
 
+## Supported PaTi addons
+
+PaTiSuite is optional and only a control panel. No other addon needs it; every PaTi addon works on its own, with or without it. It lists whichever of these are installed:
+
+- **PaTiSuite** – optional control panel to show and hide the PaTi windows *(this addon)*
+- [PaTiHeal](https://github.com/patpaskoch/PaTiHeal) – healer party frames and click casting
+- [PaTiAuras](https://github.com/patpaskoch/PaTiAuras) – buff, aura and proc watcher
+- [PaTiTank](https://github.com/patpaskoch/PaTiTank) – tank HUD and aggro monitor
+- [PaTiGroup](https://github.com/patpaskoch/PaTiGroup) – raid markers, ready check and pull timer
+- [PaTiQuest](https://github.com/patpaskoch/PaTiQuest) – selected quest and its objectives
+- [PaTiDungeon](https://github.com/patpaskoch/PaTiDungeon) – instance, group and combat status
+- [PaTiAlerts](https://github.com/patpaskoch/PaTiAlerts) – one window for open problems
+
 ## Installation
 1. Download the release zip (`PaTiSuite-<version>.zip`).
 2. Unpack it and copy the folder `PaTiSuite` into `World of Warcraft/<client>/Interface/AddOns/`.
@@ -34,6 +47,10 @@ nothing else). PaTiSuite reads that list; it never reads settings or game data o
 
 ## Known limitations
 - In-game test status: [`INGAME_TESTING.md`](INGAME_TESTING.md) (the single "all" button is not tested yet).
+
+## Development
+
+Architecture, tests and engineering rules of the suite: [PaTiAdmin](https://github.com/patpaskoch/PaTiAdmin). PaTiAdmin is not a WoW addon — players do not install it. The shared UI code (PaTiShared) is already embedded in this addon's `Shared/` folder; there is nothing extra to install.
 
 ## License
 MIT — see [LICENSE](LICENSE). Copyright (c) 2026 Patrick Koch.
