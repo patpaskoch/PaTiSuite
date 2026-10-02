@@ -21,7 +21,9 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
 
 - [ ] PT-SUITE-001 Fresh Install aus dem Release-ZIP: genau ein Ordner `PaTiSuite/`, Addon lädt allein
 - [ ] PT-SUITE-002 PaTiSuite erscheint in der AddOn-Liste mit Beschreibung
-- [ ] PT-SUITE-003 Icon (Zahnrad-Emblem) in der AddOn-Liste korrekt, keine weiße oder fehlende Textur
+- [x] PT-SUITE-003 Icon (Zahnrad-Emblem) in der AddOn-Liste korrekt, keine weiße oder fehlende Textur
+  - ✅ VERIFIED 2026-10-02
+  - Owner: die Icons erscheinen im Spiel in der AddOn-Liste korrekt.
 - [ ] PT-SUITE-004 Login ohne Lua-Fehler
 - [ ] PT-SUITE-005 `/reload` ohne Lua-Fehler
 
