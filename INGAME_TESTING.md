@@ -164,6 +164,8 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
 - [ ] PT-SUITE-151 Gameplay-Inhalte unverändert kräftig: Lebensbalken, Warnungen, Aura-Texte, Aggro-Zeilen
 - [ ] PT-SUITE-152 Einstellungsfenster (Modals): Titel normal hell, nicht ausgegraut
 - [ ] PT-SUITE-153 ••• ist ruhig, beim Hover voll sichtbar und bedienbar; TEST-Badge im Test Mode gut sichtbar
+- [ ] PT-SUITE-154 Im Kampf am Header verschieben: Tank, Group, Quest, Dungeon, Social, Alerts und Suite lassen sich ziehen,
+  Heal, Auras, Rota und Lead nicht (Secure-Buttons); kein Lua-Fehler, kein `ADDON_ACTION_BLOCKED`; gesperrte Fenster nie
 
 ## SavedVariables
 

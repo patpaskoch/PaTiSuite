@@ -24,6 +24,7 @@ end
 
 local LINE, PAD, DOT = 22, UI.Spacing.MD, 8
 local window = UI.CreateWindow("PaTiSuiteFrame", "PaTiSuite", 120, 120)
+window:SetCombatMovable(true) -- no secure children: may be dragged in combat too (PaTiShared)
 local content = CreateFrame("Frame", nil, window) -- everything below the header; hidden while collapsed
 content:SetPoint("TOPLEFT", 0, -UI.Sizes.HeaderHeight)
 content:SetPoint("BOTTOMRIGHT")
