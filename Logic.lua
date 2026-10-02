@@ -37,11 +37,14 @@ end
 -- (party awareness). A remembered visibility.PaTiGroup belonged to the old one: it moves to PaTiLead (unless PaTiLead
 -- already has its own entry), so the new PaTiGroup starts without an old override.
 function Logic.Migrate(db)
-    db = db or {}
+    if type(db) ~= "table" then db = {} end -- nil or a broken save (string, number …): start fresh
     for key, value in pairs(Logic.DEFAULTS) do
         if db[key] == nil then db[key] = value end
     end
+    -- A broken scale would make SetScale fail on login: only a sane number is kept (saved values elsewhere stay).
+    if type(db.scale) ~= "number" or db.scale < 0.5 or db.scale > 2 then db.scale = Logic.DEFAULTS.scale end
     if not validLayout(db.layout) then db.layout = Logic.DEFAULTS.layout end
+    if type(db.schema) ~= "number" then db.schema = nil end -- broken schema: run every step (they are idempotent)
     local visibility = {}
     for name, shown in pairs(type(db.visibility) == "table" and db.visibility or {}) do
         if type(name) == "string" and type(shown) == "boolean" then visibility[name] = shown end

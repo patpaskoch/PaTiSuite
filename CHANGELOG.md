@@ -30,6 +30,7 @@ Format: `## [Unreleased]` / `## [x.y.z] - YYYY-MM-DD` with Added, Changed, Fixed
 - The single "Show all / Hide all" button is not tested in game yet. Owner-confirmed 2026-09-30: single show/hide,
   the former Show all / Hide all buttons, green/grey states, readable hover (`INGAME_TESTING.md`).
 ### Fixed
+- Hardening: a broken SavedVariables save (not a table, a broken schema or scale) no longer breaks the login; only the broken value is replaced, every valid setting (also `false`) stays, and the migration is idempotent (tests/robustness_spec.lua).
 - Settings: the "General" section heading had no translation and showed its key "GENERAL" (found in the code).
 - Hovering a line made it unreadable (owner test 2026-09-30): the hover texture sat in the HIGHLIGHT layer above the
   text. It is now a background shown on mouse-over, the text stays light.
