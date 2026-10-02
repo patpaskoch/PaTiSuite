@@ -9,7 +9,7 @@ works exactly the same without it.
 > Status: 0.1.0, in development, not yet released. Partly tested in game ([`INGAME_TESTING.md`](INGAME_TESTING.md)).
 
 ## Features
-- Lists the PaTi addons that are installed and running (Heal, Auras, Tank, Group, Quest, Dungeon, Alerts) in a
+- Lists the PaTi addons that are installed and running (Heal, Auras, Tank, Group, Quest, Dungeon, Social, Alerts) in a
   compact panel: a coloured dot and the short name — green = window shown, grey = hidden. A click on an entry
   shows or hides that window
 - One button for all windows: "Hide all" while every window is shown, otherwise "Show all"; the control panel
@@ -36,6 +36,7 @@ PaTiSuite is optional and only a control panel. No other addon needs it; every P
 - [PaTiGroup](https://github.com/patpaskoch/PaTiGroup) – raid markers, ready check and pull timer
 - [PaTiQuest](https://github.com/patpaskoch/PaTiQuest) – selected quest and its objectives
 - [PaTiDungeon](https://github.com/patpaskoch/PaTiDungeon) – instance, group and combat status
+- [PaTiSocial](https://github.com/patpaskoch/PaTiSocial) – "Party Social": quick emote and message buttons
 - [PaTiAlerts](https://github.com/patpaskoch/PaTiAlerts) – one window for open problems
 
 ## Installation
