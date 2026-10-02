@@ -4,6 +4,12 @@ Format: `## [Unreleased]` / `## [x.y.z] - YYYY-MM-DD` with Added, Changed, Fixed
 
 ## [Unreleased] — 0.1.0
 ### Added
+- Shown/hidden is remembered over `/reload` (owner 2026-10-02): every successful show/hide done in PaTiSuite (row
+  click, Show all, Hide all, `/psuite showall|hideall`) is saved in PaTiSuiteDB.visibility; at the first
+  PLAYER_ENTERING_WORLD each window goes back to it through the addon's own rules. No entry = the window starts as
+  its addon starts it. Blocked in combat = nothing saved (after a `/reload` in combat: applied after combat). Shows
+  and hides by other means are not saved. SavedVariables schema 3 (visibility; every other value kept);
+  Restore Defaults forgets it.
 - Control panel: one line per installed PaTi addon (from `PaTiSuiteWindows`) to show or hide its window,
   Show all / Hide all. Uses each addon's own show/hide rules; windows that cannot change in combat are named
   in one short message and left alone.
@@ -15,6 +21,7 @@ Format: `## [Unreleased]` / `## [x.y.z] - YYYY-MM-DD` with Added, Changed, Fixed
   panel has no secure buttons). SavedVariables schema 2 adds layout and collapsed; old values and the position
   stay, an unknown layout becomes vertical; Restore Defaults sets vertical and expanded.
 ### Known Issues
+- Visibility over `/reload`, the inline button and the new tooltip placement are not tested in game yet.
 - The compact layout, horizontal layout and collapse (2026-10-02) are not tested in game yet.
 - The single "Show all / Hide all" button is not tested in game yet. Owner-confirmed 2026-09-30: single show/hide,
   the former Show all / Hide all buttons, green/grey states, readable hover (`INGAME_TESTING.md`).
@@ -23,6 +30,9 @@ Format: `## [Unreleased]` / `## [x.y.z] - YYYY-MM-DD` with Added, Changed, Fixed
 - Hovering a line made it unreadable (owner test 2026-09-30): the hover texture sat in the HIGHLIGHT layer above the
   text. It is now a background shown on mouse-over, the text stays light.
 ### Changed
+- Horizontal layout: the Show all / Hide all button is the last element of the row instead of a line below; the
+  row may use up to 90 % of the screen width before it wraps.
+- Tooltips sit beside the hovered line (PaTiShared).
 - Compact panel: each entry is only a coloured dot and the short name (green = shown, grey = hidden), the
   "Shown"/"Hidden" text is gone; the window is as wide as its content, the entries or the header need.
 - Shown windows are marked green (dot and "Shown"), hidden ones grey; PaTi blue is no longer an on/off colour.

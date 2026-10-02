@@ -70,6 +70,7 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
 - [ ] PT-SUITE-048 Ein Button für alle: sind alle Fenster sichtbar, heißt er „Alle ausblenden“ und blendet alle aus
   (das Steuerfenster bleibt); ist mindestens eines ausgeblendet, heißt er „Alle einblenden“ und blendet alle ein;
   die Beschriftung wechselt nach jedem Klick und nach einzelnem Ein-/Ausblenden
+  - Owner 2026-10-02 (Teilbefund): „Alle ausblenden“ blendet alle Fenster korrekt aus; Rest offen.
 - [ ] PT-SUITE-049 Einzelnes Ein-/Ausblenden (PT-SUITE-040/041) funktioniert nach dem Umbau weiter
 
 ## UI
@@ -101,11 +102,17 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
 
 - [ ] PT-SUITE-110 Einstellungen → Darstellung → Layout „Horizontal“: wirkt sofort, ohne `/reload`
 - [ ] PT-SUITE-111 Einträge stehen nebeneinander, jeder nur so breit wie Punkt + Name, keine Überlappung
+  - Owner 2026-10-02 (Teilbefund): die Addons stehen horizontal schön inline; Rest offen.
 - [ ] PT-SUITE-112 Jeder Eintrag einzeln anklickbar, blendet genau sein Fenster ein/aus
 - [ ] PT-SUITE-113 Statusfarben (grün/grau), Hover und Tooltip wie vertikal
 - [ ] PT-SUITE-114 Keine abgeschnittenen Namen; Fenster breiter und niedriger als vertikal
 - [ ] PT-SUITE-115 „Alle“-Button funktioniert horizontal
 - [ ] PT-SUITE-116 Zurück auf „Vertikal“: wirkt sofort, Position springt nicht unnötig
+- [ ] PT-SUITE-117 Horizontal: alle Addons und der Button „Alle ausblenden/einblenden“ in einer Reihe, Button am
+  Ende, vollständig lesbar, Klick funktioniert; nach dem Klick (andere Beschriftung) bleibt die Reihe sauber
+- [ ] PT-SUITE-118 deDE und enUS: keine Überlappung; Größe 0,8 / 1,0 / 1,25 sinnvoll
+- [ ] PT-SUITE-119 Kleine Bildschirmbreite oder große Skalierung: die Reihe bricht sauber um (Button wandert mit),
+  nichts ragt aus dem Bildschirm
 
 ## Layout-Persistenz
 
@@ -120,6 +127,28 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
 - [ ] PT-SUITE-126 ••• → „Ausklappen“: Inhalt wieder sichtbar
 - [ ] PT-SUITE-127 Eingeklappter Zustand bleibt nach `/reload`
 - [ ] PT-SUITE-128 Collapse funktioniert vertikal und horizontal, auch im Kampf ohne Fehler
+
+## Sichtbarkeit über /reload
+
+- [ ] PT-SUITE-130 „Alle ausblenden“ → `/reload` → alle bleiben ausgeblendet, PaTiSuite selbst bleibt sichtbar
+  und bedienbar
+- [ ] PT-SUITE-131 „Alle einblenden“ → `/reload` → alle bleiben sichtbar
+- [ ] PT-SUITE-132 Ein einzelnes Addon über PaTiSuite ausblenden → `/reload` → bleibt ausgeblendet
+- [ ] PT-SUITE-133 Mischzustand (z. B. Heal aus, Tank an, Quest aus) → `/reload` → derselbe Mischzustand
+- [ ] PT-SUITE-134 Im Kampf „Alle ausblenden“: Heal/Auras/Group bleiben (Hinweis) → nach dem Kampf `/reload` →
+  Heal/Auras/Group sind nicht als ausgeblendet gespeichert, die anderen schon
+- [ ] PT-SUITE-135 Ein Fenster, das nur im Addon selbst ausgeblendet wurde (z. B. `/pt hide`), wird nicht
+  gespeichert: nach `/reload` startet es wie das Addon es startet
+- [ ] PT-SUITE-136 „Standard wiederherstellen“ vergisst die gespeicherte Sichtbarkeit: nach `/reload` starten alle
+  Fenster wieder wie ihr Addon sie startet
+
+## Tooltips (PaTiShared)
+
+- [ ] PT-SUITE-140 Steuerfenster in der linken Bildschirmhälfte: Tooltip einer Zeile steht rechts daneben, der
+  Punkt und der Name bleiben sichtbar
+- [ ] PT-SUITE-141 Steuerfenster in der rechten Hälfte: Tooltip steht links daneben
+- [ ] PT-SUITE-142 ••• -Button: Tooltip neben dem Button, Menü öffnet weiter; Klick und Hover auf Zeilen unverändert
+- [ ] PT-SUITE-143 Tooltip am oberen/unteren Bildschirmrand bleibt vollständig sichtbar; kein Lua-Fehler
 
 ## SavedVariables
 

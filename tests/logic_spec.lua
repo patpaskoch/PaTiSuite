@@ -131,7 +131,7 @@ end)
 describe("Schema 2: layout and collapsed", function()
     it("new saves get vertical and expanded", function()
         local db = load().Migrate(nil)
-        assert.same({ "vertical", false, 2 }, { db.layout, db.collapsed, db.schema })
+        assert.same({ "vertical", false, 3 }, { db.layout, db.collapsed, db.schema })
     end)
 
     it("an old schema-1 save keeps every value and its position", function()
@@ -139,7 +139,7 @@ describe("Schema 2: layout and collapsed", function()
             point = "TOPLEFT", relativePoint = "BOTTOMLEFT", x = 377, y = 447 })
         assert.same({ 0.4, true, 1.25, "deDE", "TOPLEFT", "BOTTOMLEFT", 377, 447 },
             { db.opacity, db.locked, db.scale, db.language, db.point, db.relativePoint, db.x, db.y })
-        assert.same({ "vertical", false, 2 }, { db.layout, db.collapsed, db.schema })
+        assert.same({ "vertical", false, 3 }, { db.layout, db.collapsed, db.schema })
     end)
 
     it("keeps a saved horizontal / collapsed choice and turns an unknown layout into vertical", function()
@@ -178,5 +178,88 @@ describe("Logic.Arrange (entry positions)", function()
     it("no entries: nothing to place", function()
         local points, width, height = load().Arrange({}, "horizontal", 22, 4, 560)
         assert.same({ {}, 0, 0 }, { points, width, height })
+    end)
+end)
+
+describe("Schema 3: PaTiSuite remembers shown/hidden over /reload", function()
+    local function entriesOf(heal, tank)
+        return { { name = "PaTiHeal", frame = heal }, { name = "PaTiTank", frame = tank } }
+    end
+
+    it("schema 2 → 3 keeps every setting and the position, starts with no remembered windows", function()
+        local db = load().Migrate({ schema = 2, opacity = 0.4, locked = true, scale = 1.25, language = "deDE",
+            layout = "horizontal", collapsed = true, point = "TOPLEFT", x = 7, y = 8 })
+        assert.same({ 0.4, true, 1.25, "deDE", "horizontal", true, "TOPLEFT", 7, 8, 3 }, { db.opacity, db.locked,
+            db.scale, db.language, db.layout, db.collapsed, db.point, db.x, db.y, db.schema })
+        assert.same({}, db.visibility)
+    end)
+
+    it("keeps valid entries and drops broken ones; Restore Defaults forgets them all", function()
+        local Logic = load()
+        local db = Logic.Migrate({ visibility = { PaTiHeal = false, PaTiTank = true, PaTiQuest = "no", [3] = true } })
+        assert.same({ PaTiHeal = false, PaTiTank = true }, db.visibility)
+        assert.same({}, Logic.Migrate({ visibility = "broken" }).visibility)
+        assert.same({}, Logic.RestoreDefaults(db).visibility)
+    end)
+
+    it("login restore: no entry leaves the window alone; false hides it, true shows it", function()
+        local Logic = load()
+        local heal, tank = frame(true, { suite = true }), frame(false)
+        assert.same({}, Logic.ApplySaved(entriesOf(heal, tank), {}, false))
+        assert.same({ true, false, 0, 0 }, { heal.shown, tank.shown, heal.calls, tank.calls })
+        assert.same({}, Logic.ApplySaved(entriesOf(heal, tank), { PaTiHeal = false, PaTiTank = true }, false))
+        assert.same({ false, true }, { heal.shown, tank.shown })
+    end)
+
+    it("login restore in combat: a blocked window is named for after combat, nothing else changes", function()
+        local Logic = load()
+        local heal, tank = frame(true, { suite = true, blocked = true }), frame(true)
+        assert.same({ "PaTiHeal" }, Logic.ApplySaved(entriesOf(heal, tank), { PaTiHeal = false, PaTiTank = false }, true))
+        assert.same({ true, false }, { heal.shown, tank.shown })
+    end)
+
+    it("a successful click is remembered, a click blocked in combat is not", function()
+        local Logic = load()
+        local visibility = {}
+        local heal = frame(true, { suite = true })
+        assert.is_true(Logic.Toggle({ name = "PaTiHeal", frame = heal }, false, visibility))
+        assert.same({ PaTiHeal = false }, visibility)
+        local blocked = frame(true, { suite = true, blocked = true })
+        assert.is_false(Logic.Toggle({ name = "PaTiAuras", frame = blocked }, true, visibility))
+        assert.same({ PaTiHeal = false }, visibility)
+    end)
+
+    it("show all / hide all remembers only the windows that are now as wanted", function()
+        local Logic = load()
+        local visibility = { PaTiHeal = true }
+        local heal, tank = frame(true, { suite = true, blocked = true }), frame(true)
+        Logic.SetAll(entriesOf(heal, tank), false, true, visibility) -- hide all in combat: Heal is blocked
+        assert.same({ PaTiHeal = true, PaTiTank = false }, visibility)
+        heal = frame(false, { suite = true })
+        Logic.SetAll(entriesOf(heal, tank), true, false, visibility)
+        assert.same({ PaTiHeal = true, PaTiTank = true }, visibility)
+    end)
+end)
+
+describe("Logic.Arrange: horizontal row with the 'all' button as its last element", function()
+    it("button right after the last entry, no wrap while everything fits", function()
+        local points, width, height = load().Arrange({ 40, 60, 50, 90 }, "horizontal", 22, 4, 1000)
+        assert.same({ x = 162, y = 0 }, points[4])
+        assert.same({ 252, 22 }, { width, height })
+    end)
+
+    it("wraps cleanly when the screen width is exceeded — the button moves to the next line on its own", function()
+        local points, width, height = load().Arrange({ 40, 60, 50, 90 }, "horizontal", 22, 4, 200)
+        assert.same({ x = 0, y = 22 }, points[4])
+        assert.same({ 158, 44 }, { width, height })
+    end)
+
+    it("a wider button text (other language) changes the layout as expected", function()
+        local Logic = load()
+        local _, narrow = Logic.Arrange({ 40, 60, 50, 90 }, "horizontal", 22, 4, 1000)
+        local _, wide = Logic.Arrange({ 40, 60, 50, 120 }, "horizontal", 22, 4, 1000)
+        assert.equal(30, wide - narrow)
+        local points = Logic.Arrange({ 40, 60, 50, 120 }, "horizontal", 22, 4, 270)
+        assert.same({ x = 0, y = 22 }, points[4]) -- 162 + 120 > 270: wraps instead of being cut off
     end)
 end)

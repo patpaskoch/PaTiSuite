@@ -16,8 +16,10 @@ works exactly the same without it.
   itself stays visible
 - Respects each addon's rules: windows with secure buttons (Heal, Auras, Group) cannot be shown or hidden in combat —
   PaTiSuite then says so (e.g. "Heal: not possible in combat") and changes nothing
-- Layout: vertical (one entry per line, default) or horizontal (side by side) — Settings → Display → Layout,
-  applied at once
+- Layout: vertical (one entry per line, button below, default) or horizontal (side by side, the button as the
+  last element of the row; wraps only when the screen is too narrow) — Settings → Display → Layout, at once
+- Remembers what you show or hide here: after `/reload` every window you switched in PaTiSuite is as you left it.
+  Windows you never switched here start as their addon starts them. Restore Defaults forgets this
 - ••• menu: Settings, Lock, Collapse/Expand (only the header stays), Reset position, Hide. Settings: language,
   scale, lock, panel opacity, layout
 

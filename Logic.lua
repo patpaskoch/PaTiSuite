@@ -5,12 +5,12 @@ local _, ns = ...
 local Logic = {}
 ns.Logic = Logic
 
-Logic.SCHEMA = 2
+Logic.SCHEMA = 3
 Logic.SCALES = { 0.8, 0.9, 1, 1.1, 1.25, 1.5 }
 Logic.ORDER = { "PaTiHeal", "PaTiAuras", "PaTiTank", "PaTiGroup", "PaTiQuest", "PaTiDungeon", "PaTiAlerts" }
 Logic.LAYOUTS = { "vertical", "horizontal" }
--- Horizontal: wrap before this width (all seven short names fit in one line at scale 1).
-Logic.MAX_ROW_WIDTH = 560
+-- Horizontal: the row may use this share of the screen width before it wraps (PaTiSuite.lua computes the px).
+Logic.SCREEN_SHARE = 0.9
 
 -- Position (point, relativePoint, x, y) is written by the PaTiShared window, not listed here.
 Logic.DEFAULTS = {
@@ -29,19 +29,28 @@ local function validLayout(layout)
     return false
 end
 
--- Schema 2 (2026-10-02) adds layout and collapsed; every older value and the position stay as they are.
+-- Schema 2 (2026-10-02) adds layout and collapsed; schema 3 (2026-10-02) adds visibility = { [addonName] = true |
+-- false }: what the player chose in PaTiSuite. A missing entry = PaTiSuite leaves that window as the addon starts it.
+-- Every older value and the position stay as they are; anything else in visibility is dropped.
 function Logic.Migrate(db)
     db = db or {}
     for key, value in pairs(Logic.DEFAULTS) do
         if db[key] == nil then db[key] = value end
     end
     if not validLayout(db.layout) then db.layout = Logic.DEFAULTS.layout end
+    local visibility = {}
+    for name, shown in pairs(type(db.visibility) == "table" and db.visibility or {}) do
+        if type(name) == "string" and type(shown) == "boolean" then visibility[name] = shown end
+    end
+    db.visibility = visibility
     db.schema = Logic.SCHEMA
     return db
 end
 
+-- Restore Defaults also forgets the remembered visibility: every window starts as its addon starts it again.
 function Logic.RestoreDefaults(db)
     for key, value in pairs(Logic.DEFAULTS) do db[key] = value end
+    db.visibility = {}
     return db
 end
 
@@ -95,12 +104,15 @@ function Logic.SetShown(frame, shown, inCombat)
     return (pcall(frame.SetShown, frame, shown))
 end
 
--- Show/hide all. Returns the names that could not be changed now (e.g. in combat).
-function Logic.SetAll(entries, shown, inCombat)
+-- Show/hide all. Returns the names that could not be changed now (e.g. in combat). visibility (optional,
+-- PaTiSuiteDB.visibility): every window that is now as wanted is remembered; a blocked one keeps its old entry.
+function Logic.SetAll(entries, shown, inCombat, visibility)
     local blocked = {}
     for _, entry in ipairs(entries) do
         if Logic.IsShown(entry.frame) ~= shown and not Logic.SetShown(entry.frame, shown, inCombat) then
             blocked[#blocked + 1] = entry.name
+        elseif visibility then
+            visibility[entry.name] = shown
         end
     end
     return blocked
@@ -115,9 +127,13 @@ function Logic.AllTarget(entries)
     return #entries == 0
 end
 
--- One click on a row: visible → hide, hidden → show. Returns true if done.
-function Logic.Toggle(entry, inCombat)
-    return Logic.SetShown(entry.frame, not Logic.IsShown(entry.frame), inCombat)
+-- One click on a row: visible → hide, hidden → show. Returns true if done; then the new state is remembered in
+-- visibility (optional). A blocked click (combat) remembers nothing.
+function Logic.Toggle(entry, inCombat, visibility)
+    local shown = not Logic.IsShown(entry.frame)
+    local done = Logic.SetShown(entry.frame, shown, inCombat)
+    if done and visibility then visibility[entry.name] = shown end
+    return done
 end
 
 -- Pure: where each entry goes. widths = entry widths (px). "vertical": one per line; "horizontal": side by side
@@ -139,4 +155,18 @@ function Logic.Arrange(widths, layout, lineHeight, gap, maxWidth)
     if #widths == 0 then return points, 0, 0 end
     local height = layout == "horizontal" and y + lineHeight or #widths * lineHeight
     return points, width, height
+end
+
+-- After login: brings each window to the state the player last chose in PaTiSuite (visibility). Windows without an
+-- entry are left alone. Returns the names that could not be changed now (in combat) — try again after combat.
+function Logic.ApplySaved(entries, visibility, inCombat)
+    local blocked = {}
+    for _, entry in ipairs(entries) do
+        local wanted = visibility and visibility[entry.name]
+        if type(wanted) == "boolean" and Logic.IsShown(entry.frame) ~= wanted
+            and not Logic.SetShown(entry.frame, wanted, inCombat) then
+            blocked[#blocked + 1] = entry.name
+        end
+    end
+    return blocked
 end

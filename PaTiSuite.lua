@@ -52,7 +52,10 @@ local function newRow(index)
     row:SetScript("OnClick", function(self)
         local entry = self.entry
         if not entry then return end
-        if not Logic.Toggle(entry, InCombatLockdown()) then say("BLOCKED_COMBAT", Logic.Label(entry.name)) end
+        -- Remembered over /reload when done (DB.visibility); a click blocked in combat remembers nothing.
+        if not Logic.Toggle(entry, InCombatLockdown(), DB.visibility) then
+            say("BLOCKED_COMBAT", Logic.Label(entry.name))
+        end
         refresh()
     end)
     UI.SetTooltip(row, function() return row.tooltipLines end)
@@ -66,7 +69,7 @@ local function rowWidth(row)
 end
 
 local function setAll(shown)
-    local blocked = Logic.SetAll(entries, shown, InCombatLockdown())
+    local blocked = Logic.SetAll(entries, shown, InCombatLockdown(), DB.visibility) -- remembered over /reload
     if #blocked > 0 then
         local names = {}
         for _, name in ipairs(blocked) do names[#names + 1] = Logic.Label(name) end
@@ -99,27 +102,43 @@ local function headerWidth()
         + UI.Spacing.XS
 end
 
--- Places the entries and the button, then sizes the window; collapsed = header only.
+-- Horizontal: how wide the row may get before it wraps — a share of the screen, in the panel's own scale.
+local function maxRowWidth()
+    local screen = UIParent:GetWidth() * UIParent:GetEffectiveScale() / window:GetEffectiveScale()
+    return screen * Logic.SCREEN_SHARE - 2 * PAD
+end
+
+-- Places the entries and the button, then sizes the window; collapsed = header only. Vertical: the button below
+-- the list. Horizontal: the button is the last element of the same row (owner wish 2026-10-02) and wraps with it.
 local function applyLayout()
+    local inline = DB.layout == "horizontal" and #entries > 0
     local widths = {}
     for index = 1, #entries do widths[index] = rowWidth(rows[index]) end
-    local points, usedWidth, usedHeight = Logic.Arrange(widths, DB.layout, LINE, UI.Spacing.SM, Logic.MAX_ROW_WIDTH)
+    if inline then widths[#widths + 1] = allButton:GetWidth() end
+    local points, usedWidth, usedHeight = Logic.Arrange(widths, DB.layout, LINE, UI.Spacing.SM, maxRowWidth())
     if #entries == 0 then usedWidth, usedHeight = EMPTY_WIDTH, 2 * LINE end
     local inner = math.max(usedWidth, allButton:GetWidth(), headerWidth() - 2 * PAD)
-    for index, point in ipairs(points) do
-        local row = rows[index]
+    for index = 1, #entries do
+        local row, point = rows[index], points[index]
         row:SetWidth(DB.layout == "vertical" and inner or widths[index]) -- vertical: the whole line is clickable
         row:ClearAllPoints()
         row:SetPoint("TOPLEFT", PAD + point.x, -(UI.Spacing.SM + point.y))
     end
     empty:SetWidth(inner)
-    local buttonTop = UI.Spacing.SM + usedHeight + UI.Spacing.SM
     allButton:ClearAllPoints()
-    allButton:SetPoint("TOP", content, "TOPLEFT", PAD + inner / 2, -buttonTop)
+    local contentHeight
+    if inline then
+        local point = points[#widths]
+        allButton:SetPoint("TOPLEFT", content, "TOPLEFT", PAD + point.x, -(UI.Spacing.SM + point.y))
+        contentHeight = UI.Spacing.SM + usedHeight + PAD
+    else
+        local buttonTop = UI.Spacing.SM + usedHeight + UI.Spacing.SM
+        allButton:SetPoint("TOP", content, "TOPLEFT", PAD + inner / 2, -buttonTop)
+        contentHeight = buttonTop + UI.Sizes.ButtonHeight + PAD
+    end
     window:SetWidth(inner + 2 * PAD)
     content:SetShown(not DB.collapsed)
-    window:SetHeight(DB.collapsed and UI.Sizes.HeaderHeight
-        or UI.Sizes.HeaderHeight + buttonTop + UI.Sizes.ButtonHeight + PAD)
+    window:SetHeight(UI.Sizes.HeaderHeight + (DB.collapsed and 0 or contentHeight))
 end
 
 refresh = function()
@@ -251,10 +270,28 @@ window:SetMenu(function()
 end)
 
 -- Events ---------------------------------------------------------------------------------------
--- PLAYER_LOGIN: every addon has loaded (and registered its window), whatever the load order was.
+
+-- First PLAYER_ENTERING_WORLD (after every addon's PLAYER_LOGIN, whatever the load order): windows go back to what
+-- the player last chose in PaTiSuite (DB.visibility), once per login/reload. Windows blocked in combat (/reload in
+-- combat) get it after combat. Shows/hides by other means only refresh the list; they are not remembered.
+local restored, restorePending = false, nil
+
+local function restoreVisibility(only)
+    local list = {}
+    for _, entry in ipairs(Logic.Entries(UI.WindowRegistry(), SELF)) do
+        if not only or only[entry.name] then list[#list + 1] = entry end
+    end
+    local blocked = Logic.ApplySaved(list, DB.visibility, InCombatLockdown())
+    restorePending = nil
+    if #blocked > 0 then
+        restorePending = {}
+        for _, name in ipairs(blocked) do restorePending[name] = true end
+    end
+end
 
 local events = CreateFrame("Frame")
 events:RegisterEvent("PLAYER_LOGIN")
+events:RegisterEvent("PLAYER_ENTERING_WORLD")
 events:RegisterEvent("PLAYER_REGEN_ENABLED") -- windows blocked in combat may have changed afterwards
 events:SetScript("OnEvent", function(_, event)
     if event == "PLAYER_LOGIN" then
@@ -263,6 +300,13 @@ events:SetScript("OnEvent", function(_, event)
         UI.SetLanguage(DB.language)
         window:Attach(DB, 0, 320)
         window:SetScale(DB.scale)
+    elseif not DB then
+        return
+    elseif event == "PLAYER_ENTERING_WORLD" and not restored then
+        restored = true
+        restoreVisibility()
+    elseif event == "PLAYER_REGEN_ENABLED" and restorePending then
+        restoreVisibility(restorePending)
     end
     refresh()
 end)
