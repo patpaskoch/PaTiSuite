@@ -6,8 +6,11 @@ ns.Locales.deDE = L
 
 L.SHOW_ALL = "Alle einblenden"
 L.HIDE_ALL = "Alle ausblenden"
-L.SHOWN = "Angezeigt"
-L.HIDDEN = "Ausgeblendet"
+L.GENERAL = "Allgemein"
+L.DISPLAY = "Darstellung"
+L.LAYOUT = "Layout"
+L.VERTICAL = "Vertikal"
+L.HORIZONTAL = "Horizontal"
 L.CLICK_TO_HIDE = "Klicken, um dieses Fenster auszublenden."
 L.CLICK_TO_SHOW = "Klicken, um dieses Fenster anzuzeigen."
 L.NO_WINDOWS = "Kein PaTi-Addon-Fenster gefunden."

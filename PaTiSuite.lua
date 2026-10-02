@@ -6,7 +6,7 @@ local addonName, ns = ...
 local UI, L, Logic = ns.UI, ns.UI.L, ns.Logic
 
 local DB
-local SELF = addonName -- the panel registers itself too (for snapping) but is not listed
+local SELF = addonName -- the panel registers itself too (every PaTi main window does) but is not listed
 
 local function say(key, ...)
     print("|cff68caffPaTiSuite:|r " .. L[key]:format(...))
@@ -18,18 +18,23 @@ local function addonVersion()
 end
 
 -- Window ---------------------------------------------------------------------------------------
+-- Compact: one entry per addon = status dot + short name, sized to its text (owner wish 2026-10-02). Vertical =
+-- one entry per line, horizontal = side by side (Logic.Arrange). The window is as wide as its widest part: the
+-- entries, the "all" button or the header (title + ••• menu button).
 
-local WIDTH, LINE, PAD = 220, 22, UI.Spacing.MD
-local window = UI.CreateWindow("PaTiSuiteFrame", "PaTiSuite", WIDTH, 120)
+local LINE, PAD, DOT = 22, UI.Spacing.MD, 8
+local window = UI.CreateWindow("PaTiSuiteFrame", "PaTiSuite", 120, 120)
+local content = CreateFrame("Frame", nil, window) -- everything below the header; hidden while collapsed
+content:SetPoint("TOPLEFT", 0, -UI.Sizes.HeaderHeight)
+content:SetPoint("BOTTOMRIGHT")
 local rows = {}
 local entries = {}
 local refresh -- defined below
 
--- Rows are buttons: a click does a safe UI action (show/hide a window), so they look clickable.
+-- Entries are buttons: a click does a safe UI action (show/hide a window), so they look clickable.
 local function newRow(index)
-    local row = CreateFrame("Button", nil, window)
-    row:SetSize(WIDTH - 2 * PAD, LINE)
-    row:SetPoint("TOPLEFT", PAD, -(UI.Sizes.HeaderHeight + UI.Spacing.SM + (index - 1) * LINE))
+    local row = CreateFrame("Button", nil, content)
+    row:SetHeight(LINE)
     row:RegisterForClicks("LeftButtonUp")
     -- Hover like the PaTiShared popup: a background texture under the text (a HIGHLIGHT layer would cover it).
     local hover = row:CreateTexture(nil, "BACKGROUND")
@@ -39,12 +44,11 @@ local function newRow(index)
     row:HookScript("OnEnter", function() hover:Show() end)
     row:HookScript("OnLeave", function() hover:Hide() end)
     row.dot = row:CreateTexture(nil, "ARTWORK")
-    row.dot:SetSize(8, 8)
+    row.dot:SetSize(DOT, DOT)
     row.dot:SetPoint("LEFT", UI.Spacing.SM, 0)
     row.name = row:CreateFontString(nil, "OVERLAY", UI.Fonts.Text)
     row.name:SetPoint("LEFT", row.dot, "RIGHT", UI.Spacing.MD, 0)
-    row.state = row:CreateFontString(nil, "OVERLAY", UI.Fonts.Muted)
-    row.state:SetPoint("RIGHT", -UI.Spacing.SM, 0)
+    row.name:SetWordWrap(false)
     row:SetScript("OnClick", function(self)
         local entry = self.entry
         if not entry then return end
@@ -54,6 +58,11 @@ local function newRow(index)
     UI.SetTooltip(row, function() return row.tooltipLines end)
     rows[index] = row
     return row
+end
+
+-- Width an entry needs: dot + gap + name, with a small margin on both sides.
+local function rowWidth(row)
+    return UI.Spacing.SM + DOT + UI.Spacing.MD + math.ceil(UI.TextWidth(row.name)) + UI.Spacing.SM
 end
 
 local function setAll(shown)
@@ -67,12 +76,13 @@ local function setAll(shown)
 end
 
 -- One button for both: "Hide all" while every window is shown, otherwise "Show all" (owner wish 2026-09-30).
-local allButton = UI.CreateButton(window, "SHOW_ALL", WIDTH - 2 * PAD, function() setAll(Logic.AllTarget(entries)) end)
-local empty = window:CreateFontString(nil, "OVERLAY", UI.Fonts.Muted)
-empty:SetPoint("TOPLEFT", PAD, -(UI.Sizes.HeaderHeight + UI.Spacing.SM + 3))
-empty:SetPoint("RIGHT", -PAD, 0)
+-- Width nil = fitted to its text (follows language changes).
+local allButton = UI.CreateButton(content, "SHOW_ALL", nil, function() setAll(Logic.AllTarget(entries)) end)
+local empty = content:CreateFontString(nil, "OVERLAY", UI.Fonts.Muted)
+empty:SetPoint("TOPLEFT", PAD, -(UI.Spacing.SM + 3))
 empty:SetJustifyH("LEFT")
 empty:SetWordWrap(true)
+local EMPTY_WIDTH = 160 -- the "no window found" hint wraps inside this width
 
 -- Watches the registered windows, so the list also follows /ph hide, the × of a window etc. (post-hooks only).
 local hooked = {}
@@ -81,6 +91,35 @@ local function watch(frame)
     hooked[frame] = true
     frame:HookScript("OnShow", function() if refresh then refresh() end end)
     frame:HookScript("OnHide", function() if refresh then refresh() end end)
+end
+
+-- Header needs: title, gap, ••• button (UI.CreateWindow places them at Spacing.MD / Spacing.XS from the edges).
+local function headerWidth()
+    return UI.Spacing.MD + math.ceil(UI.TextWidth(window.title)) + UI.Spacing.LG + UI.Sizes.HeaderHeight
+        + UI.Spacing.XS
+end
+
+-- Places the entries and the button, then sizes the window; collapsed = header only.
+local function applyLayout()
+    local widths = {}
+    for index = 1, #entries do widths[index] = rowWidth(rows[index]) end
+    local points, usedWidth, usedHeight = Logic.Arrange(widths, DB.layout, LINE, UI.Spacing.SM, Logic.MAX_ROW_WIDTH)
+    if #entries == 0 then usedWidth, usedHeight = EMPTY_WIDTH, 2 * LINE end
+    local inner = math.max(usedWidth, allButton:GetWidth(), headerWidth() - 2 * PAD)
+    for index, point in ipairs(points) do
+        local row = rows[index]
+        row:SetWidth(DB.layout == "vertical" and inner or widths[index]) -- vertical: the whole line is clickable
+        row:ClearAllPoints()
+        row:SetPoint("TOPLEFT", PAD + point.x, -(UI.Spacing.SM + point.y))
+    end
+    empty:SetWidth(inner)
+    local buttonTop = UI.Spacing.SM + usedHeight + UI.Spacing.SM
+    allButton:ClearAllPoints()
+    allButton:SetPoint("TOP", content, "TOPLEFT", PAD + inner / 2, -buttonTop)
+    window:SetWidth(inner + 2 * PAD)
+    content:SetShown(not DB.collapsed)
+    window:SetHeight(DB.collapsed and UI.Sizes.HeaderHeight
+        or UI.Sizes.HeaderHeight + buttonTop + UI.Sizes.ButtonHeight + PAD)
 end
 
 refresh = function()
@@ -94,21 +133,20 @@ refresh = function()
         row.dot:SetColorTexture(UI.Color(Logic.StateColor(shown)))
         row.name:SetText(Logic.Label(entry.name))
         row.name:SetTextColor(UI.Color(shown and "Text" or "TextMuted"))
-        row.state:SetText(shown and L.SHOWN or L.HIDDEN)
-        row.state:SetTextColor(UI.Color(Logic.StateColor(shown)))
         row.tooltipLines = { entry.name, shown and L.CLICK_TO_HIDE or L.CLICK_TO_SHOW }
         row:Show()
     end
     for index = #entries + 1, #rows do rows[index].entry = nil; rows[index]:Hide() end
     empty:SetText(#entries == 0 and L.NO_WINDOWS or "")
     empty:SetShown(#entries == 0)
-    local listHeight = math.max(#entries, #entries == 0 and 2 or 0) * LINE
-    local buttonsTop = UI.Sizes.HeaderHeight + UI.Spacing.SM + listHeight + UI.Spacing.SM
     UI.BindText(allButton.label, Logic.AllTarget(entries) and "SHOW_ALL" or "HIDE_ALL")
-    allButton:ClearAllPoints()
-    allButton:SetPoint("TOPLEFT", PAD, -buttonsTop)
     allButton:SetEnabled(#entries > 0)
-    window:SetHeight(buttonsTop + UI.Sizes.ButtonHeight + PAD)
+    applyLayout()
+end
+
+local function toggleCollapsed() -- no secure frames: fine in combat
+    DB.collapsed = not DB.collapsed
+    refresh()
 end
 
 -- Settings -------------------------------------------------------------------------------------
@@ -133,6 +171,16 @@ local function buildSettings()
         set = function(locked) window:SetLocked(locked) end,
     }))
     UI.AddWindowSettings(modal, window)
+    modal:AddSection("DISPLAY")
+    local layouts = {}
+    for _, layout in ipairs(Logic.LAYOUTS) do
+        layouts[#layouts + 1] = { value = layout, text = function() return L[layout:upper()] end }
+    end
+    modal:AddRow("LAYOUT", UI.CreateDropdown(modal, 170, {
+        items = function() return layouts end,
+        get = function() return DB.layout end,
+        set = function(layout) DB.layout = layout; refresh() end, -- applied at once, no /reload
+    }))
     modal:Finish(function()
         Logic.RestoreDefaults(DB)
         window:ApplyOpacity()
@@ -196,6 +244,7 @@ window:SetMenu(function()
         { text = "SETTINGS", onClick = openSettings },
         { text = window:IsLocked() and "UNLOCK" or "LOCK",
             onClick = function() window:SetLocked(not window:IsLocked()) end },
+        { text = DB.collapsed and "EXPAND" or "COLLAPSE", onClick = toggleCollapsed },
         { text = "RESET_POSITION", onClick = resetPosition },
         { text = "HIDE", onClick = function() setShown(false) end },
     }

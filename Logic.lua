@@ -5,9 +5,12 @@ local _, ns = ...
 local Logic = {}
 ns.Logic = Logic
 
-Logic.SCHEMA = 1
+Logic.SCHEMA = 2
 Logic.SCALES = { 0.8, 0.9, 1, 1.1, 1.25, 1.5 }
 Logic.ORDER = { "PaTiHeal", "PaTiAuras", "PaTiTank", "PaTiGroup", "PaTiQuest", "PaTiDungeon", "PaTiAlerts" }
+Logic.LAYOUTS = { "vertical", "horizontal" }
+-- Horizontal: wrap before this width (all seven short names fit in one line at scale 1).
+Logic.MAX_ROW_WIDTH = 560
 
 -- Position (point, relativePoint, x, y) is written by the PaTiShared window, not listed here.
 Logic.DEFAULTS = {
@@ -15,13 +18,24 @@ Logic.DEFAULTS = {
     locked = false,
     scale = 1,
     language = "auto",
+    layout = "vertical",
+    collapsed = false,
 }
 
+local function validLayout(layout)
+    for _, known in ipairs(Logic.LAYOUTS) do
+        if layout == known then return true end
+    end
+    return false
+end
+
+-- Schema 2 (2026-10-02) adds layout and collapsed; every older value and the position stay as they are.
 function Logic.Migrate(db)
     db = db or {}
     for key, value in pairs(Logic.DEFAULTS) do
         if db[key] == nil then db[key] = value end
     end
+    if not validLayout(db.layout) then db.layout = Logic.DEFAULTS.layout end
     db.schema = Logic.SCHEMA
     return db
 end
@@ -104,4 +118,25 @@ end
 -- One click on a row: visible → hide, hidden → show. Returns true if done.
 function Logic.Toggle(entry, inCombat)
     return Logic.SetShown(entry.frame, not Logic.IsShown(entry.frame), inCombat)
+end
+
+-- Pure: where each entry goes. widths = entry widths (px). "vertical": one per line; "horizontal": side by side
+-- with `gap` between them, a new line only when the next entry would pass maxWidth. Returns the positions
+-- { { x, y }, … } (y downwards from the top), the width and the height used.
+function Logic.Arrange(widths, layout, lineHeight, gap, maxWidth)
+    local points, x, y, width = {}, 0, 0, 0
+    for index, entryWidth in ipairs(widths) do
+        if layout == "horizontal" then
+            if x > 0 and x + entryWidth > maxWidth then x, y = 0, y + lineHeight end
+            points[index] = { x = x, y = y }
+            width = math.max(width, x + entryWidth)
+            x = x + entryWidth + gap
+        else
+            points[index] = { x = 0, y = (index - 1) * lineHeight }
+            width = math.max(width, entryWidth)
+        end
+    end
+    if #widths == 0 then return points, 0, 0 end
+    local height = layout == "horizontal" and y + lineHeight or #widths * lineHeight
+    return points, width, height
 end

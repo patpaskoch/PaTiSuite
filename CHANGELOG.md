@@ -10,13 +10,21 @@ Format: `## [Unreleased]` / `## [x.y.z] - YYYY-MM-DD` with Added, Changed, Fixed
 - Settings: language, scale, lock, panel opacity, snapping; ••• menu with Settings, Lock, Reset position, Hide;
   `/psuite`, `/patisuite`. English texts, German translation. MIT license.
 - Icon (the owner-approved PaTiSuite emblem): `Media/icon.tga` for the AddOns list, platform images in `assets/`.
+- Layout setting: vertical (default) or horizontal, applied at once (Settings → Display → Layout).
+- Collapse/Expand in the ••• menu: only the header stays; saved in PaTiSuiteDB.collapsed (also in combat — the
+  panel has no secure buttons). SavedVariables schema 2 adds layout and collapsed; old values and the position
+  stay, an unknown layout becomes vertical; Restore Defaults sets vertical and expanded.
 ### Known Issues
+- The compact layout, horizontal layout and collapse (2026-10-02) are not tested in game yet.
 - The single "Show all / Hide all" button is not tested in game yet. Owner-confirmed 2026-09-30: single show/hide,
   the former Show all / Hide all buttons, green/grey states, readable hover (`INGAME_TESTING.md`).
 ### Fixed
+- Settings: the "General" section heading had no translation and showed its key "GENERAL" (found in the code).
 - Hovering a line made it unreadable (owner test 2026-09-30): the hover texture sat in the HIGHLIGHT layer above the
   text. It is now a background shown on mouse-over, the text stays light.
 ### Changed
+- Compact panel: each entry is only a coloured dot and the short name (green = shown, grey = hidden), the
+  "Shown"/"Hidden" text is gone; the window is as wide as its content, the entries or the header need.
 - Shown windows are marked green (dot and "Shown"), hidden ones grey; PaTi blue is no longer an on/off colour.
 - Settings: snapping removed (see PaTiShared).
 - One button instead of "Show all" and "Hide all" (owner wish 2026-09-30): "Hide all" while every window is shown,

@@ -6,16 +6,20 @@ A tiny, optional control panel for World of Warcraft: Forever (Interface 16001):
 to show or hide its window, plus **Show all** / **Hide all**. It is a remote control, nothing more — every PaTi addon
 works exactly the same without it.
 
-> Status: 0.1.0, in development, not yet released. Not yet tested in game.
+> Status: 0.1.0, in development, not yet released. Partly tested in game ([`INGAME_TESTING.md`](INGAME_TESTING.md)).
 
 ## Features
-- Lists the PaTi addons that are installed and running (Heal, Auras, Tank, Group, Quest, Dungeon, Alerts); a green
-  dot and "Shown" or a grey dot and "Hidden" show the state, a click on the line shows or hides that window
+- Lists the PaTi addons that are installed and running (Heal, Auras, Tank, Group, Quest, Dungeon, Alerts) in a
+  compact panel: a coloured dot and the short name — green = window shown, grey = hidden. A click on an entry
+  shows or hides that window
 - One button for all windows: "Hide all" while every window is shown, otherwise "Show all"; the control panel
   itself stays visible
 - Respects each addon's rules: windows with secure buttons (Heal, Auras, Group) cannot be shown or hidden in combat —
   PaTiSuite then says so (e.g. "Heal: not possible in combat") and changes nothing
-- ••• menu: Settings, Lock, Reset position, Hide. Settings: language, scale, lock, panel opacity
+- Layout: vertical (one entry per line, default) or horizontal (side by side) — Settings → Display → Layout,
+  applied at once
+- ••• menu: Settings, Lock, Collapse/Expand (only the header stays), Reset position, Hide. Settings: language,
+  scale, lock, panel opacity, layout
 
 No test mode: the panel only shows your real windows, there is nothing to simulate.
 

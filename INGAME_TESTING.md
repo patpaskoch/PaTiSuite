@@ -42,9 +42,13 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
 ## Fensterliste
 
 - [ ] PT-SUITE-030 Nur installierte und geladene PaTi-Addons erscheinen (getestet mit einem, zwei und allen sieben)
-- [ ] PT-SUITE-031 Sichtbare Fenster werden als „Angezeigt“ erkannt
-- [ ] PT-SUITE-032 Ausgeblendete Fenster werden als „Ausgeblendet“ erkannt, auch wenn sie im Addon selbst
-  (z. B. `/pt hide`) ausgeblendet wurden
+- ~~PT-SUITE-031 Sichtbare Fenster werden als „Angezeigt“ erkannt~~
+  - RETIRED 2026-10-02 – ausgeschriebener Status entfernt; Status nur noch per Farbpunkt (PT-SUITE-033).
+- ~~PT-SUITE-032 Ausgeblendete Fenster werden als „Ausgeblendet“ erkannt (auch nach `/pt hide`)~~
+  - RETIRED 2026-10-02 – ausgeschriebener Status entfernt; Status nur noch per Farbpunkt (PT-SUITE-034).
+- [ ] PT-SUITE-033 Sichtbares Fenster: grüner Punkt, Name hell, kein „Angezeigt“-Text
+- [ ] PT-SUITE-034 Ausgeblendetes Fenster: grauer Punkt, Name grau, kein „Ausgeblendet“-Text — auch wenn es im Addon
+  selbst (z. B. `/pt hide`) ausgeblendet wurde
 
 ## Show / Hide
 
@@ -77,11 +81,45 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
   - Hover-Fläche liegt jetzt hinter dem Text.
   - ✅ VERIFIED 2026-09-30
   - Retest: Lesbarkeit und Farben passen.
-- [x] PT-SUITE-051 Angezeigtes Fenster: grüner Punkt und „Angezeigt“
+- ~~PT-SUITE-051 Angezeigtes Fenster: grüner Punkt und „Angezeigt“~~
   - ✅ VERIFIED 2026-09-30
-- [x] PT-SUITE-052 Ausgeblendetes Fenster: grauer Punkt und „Ausgeblendet“, Name grau
+  - RETIRED 2026-10-02 – ausgeschriebener Status entfernt; Status nur noch per Farbpunkt (PT-SUITE-033).
+- ~~PT-SUITE-052 Ausgeblendetes Fenster: grauer Punkt und „Ausgeblendet“, Name grau~~
   - ✅ VERIFIED 2026-09-30
+  - RETIRED 2026-10-02 – ausgeschriebener Status entfernt; Status nur noch per Farbpunkt (PT-SUITE-034).
 - [ ] PT-SUITE-053 Tooltip der Zeile lesbar: Addon-Name und „Klicken, um dieses Fenster auszublenden/anzuzeigen.“
+- [ ] PT-SUITE-054 Hover nach dem Umbau (kompakte Einträge) weiterhin lesbar, vertikal und horizontal
+
+## Vertikal (Standard)
+
+- [ ] PT-SUITE-100 Kompakte vertikale Darstellung, deutlich schmaler als vorher, kein leerer Platz rechts
+- [ ] PT-SUITE-101 Alle installierten Addons sichtbar, je Punkt + kurzer Name, keine abgeschnittenen Namen
+- [ ] PT-SUITE-102 Klick auf einen Eintrag (ganze Zeile) blendet genau dieses Fenster ein bzw. aus
+- [ ] PT-SUITE-103 Der „Alle“-Button passt ins Fenster und funktioniert (PT-SUITE-048)
+
+## Horizontal
+
+- [ ] PT-SUITE-110 Einstellungen → Darstellung → Layout „Horizontal“: wirkt sofort, ohne `/reload`
+- [ ] PT-SUITE-111 Einträge stehen nebeneinander, jeder nur so breit wie Punkt + Name, keine Überlappung
+- [ ] PT-SUITE-112 Jeder Eintrag einzeln anklickbar, blendet genau sein Fenster ein/aus
+- [ ] PT-SUITE-113 Statusfarben (grün/grau), Hover und Tooltip wie vertikal
+- [ ] PT-SUITE-114 Keine abgeschnittenen Namen; Fenster breiter und niedriger als vertikal
+- [ ] PT-SUITE-115 „Alle“-Button funktioniert horizontal
+- [ ] PT-SUITE-116 Zurück auf „Vertikal“: wirkt sofort, Position springt nicht unnötig
+
+## Layout-Persistenz
+
+- [ ] PT-SUITE-120 Horizontal einstellen → `/reload` → bleibt horizontal
+- [ ] PT-SUITE-121 Vertikal einstellen → `/reload` → bleibt vertikal
+- [ ] PT-SUITE-122 Update von einer alten Version: Sprache, Größe, Sperre, Deckkraft und Position bleiben, Layout ist
+  vertikal und ausgeklappt
+
+## Collapse
+
+- [ ] PT-SUITE-125 ••• → „Einklappen“: nur der Header bleibt, keine Einträge, kein Button, kein Hinweis
+- [ ] PT-SUITE-126 ••• → „Ausklappen“: Inhalt wieder sichtbar
+- [ ] PT-SUITE-127 Eingeklappter Zustand bleibt nach `/reload`
+- [ ] PT-SUITE-128 Collapse funktioniert vertikal und horizontal, auch im Kampf ohne Fehler
 
 ## SavedVariables
 

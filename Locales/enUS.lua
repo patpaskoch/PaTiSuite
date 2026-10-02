@@ -6,8 +6,11 @@ ns.Locales.enUS = L
 
 L.SHOW_ALL = "Show all"
 L.HIDE_ALL = "Hide all"
-L.SHOWN = "Shown"
-L.HIDDEN = "Hidden"
+L.GENERAL = "General"
+L.DISPLAY = "Display"
+L.LAYOUT = "Layout"
+L.VERTICAL = "Vertical"
+L.HORIZONTAL = "Horizontal"
 L.CLICK_TO_HIDE = "Click to hide this window."
 L.CLICK_TO_SHOW = "Click to show this window."
 L.NO_WINDOWS = "No PaTi addon window found."
