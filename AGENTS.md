@@ -11,8 +11,9 @@ Addon facts: `../../PaTiAdmin/docs/ARCHITECTURE.md` · open issues: `../../PaTiA
 - Window list: `_G.PaTiSuiteWindows[addonName] = frame`, written by each addon's embedded PaTiShared (`UI.CreateWindow`).
   Show/hide goes through `frame:SetSuiteShown(shown)` (the addon's own rules, e.g. blocked in combat) — never call
   `Show`/`Hide` on another addon's protected frame in combat. Only post-hooks (`HookScript` OnShow/OnHide) to follow state.
-- SavedVariables: `PaTiSuiteDB` (per character), schema 1: position, locked, scale, language, opacity, snapWindows.
-- Secure / combat-sensitive: none of its own. No test mode (nothing to simulate), no collapse (the panel is small).
+- SavedVariables: `PaTiSuiteDB` (per character), schema 4: position, locked, scale, language, opacity, layout, collapsed,
+  visibility (schema 4 moved an old `visibility.PaTiGroup` to `PaTiLead`, `Logic.Migrate`).
+- Secure / combat-sensitive: none of its own. No test mode (nothing to simulate); Collapse via ••• (header only).
 - Slash commands: `/psuite`, `/patisuite`.
 
 ## Checks

@@ -4,6 +4,10 @@ Format: `## [Unreleased]` / `## [x.y.z] - YYYY-MM-DD` with Added, Changed, Fixed
 
 ## [Unreleased] — 0.1.0
 ### Added
+- New windows in the list (2026-10-02): PaTiRota and the new PaTiGroup (party awareness); the former PaTiGroup is now
+  PaTiLead. Order: Heal, Auras, Tank, Rota, Group, Lead, Quest, Dungeon, Social, Alerts. Group and Lead are separate
+  entries. `PaTiSuiteDB` schema 4: a remembered `visibility.PaTiGroup` belonged to the old marker addon and moves to
+  `PaTiLead` (an own PaTiLead entry wins); the new PaTiGroup starts without an old override.
 - Shown/hidden is remembered over `/reload` (owner 2026-10-02): every successful show/hide done in PaTiSuite (row
   click, Show all, Hide all, `/psuite showall|hideall`) is saved in PaTiSuiteDB.visibility; at the first
   PLAYER_ENTERING_WORLD each window goes back to it through the addon's own rules. No entry = the window starts as

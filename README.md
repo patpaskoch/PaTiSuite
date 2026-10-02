@@ -9,12 +9,12 @@ works exactly the same without it.
 > Status: 0.1.0, in development, not yet released. Partly tested in game ([`INGAME_TESTING.md`](INGAME_TESTING.md)).
 
 ## Features
-- Lists the PaTi addons that are installed and running (Heal, Auras, Tank, Group, Quest, Dungeon, Social, Alerts) in a
-  compact panel: a coloured dot and the short name — green = window shown, grey = hidden. A click on an entry
+- Lists the PaTi addons that are installed and running (Heal, Auras, Tank, Rota, Group, Lead, Quest, Dungeon, Social,
+  Alerts) in a compact panel: a coloured dot and the short name — green = window shown, grey = hidden. A click on an entry
   shows or hides that window
 - One button for all windows: "Hide all" while every window is shown, otherwise "Show all"; the control panel
   itself stays visible
-- Respects each addon's rules: windows with secure buttons (Heal, Auras, Group) cannot be shown or hidden in combat —
+- Respects each addon's rules: windows with secure buttons (Heal, Auras, Rota, Lead) cannot be shown or hidden in combat —
   PaTiSuite then says so (e.g. "Heal: not possible in combat") and changes nothing
 - Layout: vertical (one entry per line, button below, default) or horizontal (side by side, the button as the
   last element of the row; wraps only when the screen is too narrow) — Settings → Display → Layout, at once

@@ -131,7 +131,7 @@ end)
 describe("Schema 2: layout and collapsed", function()
     it("new saves get vertical and expanded", function()
         local db = load().Migrate(nil)
-        assert.same({ "vertical", false, 3 }, { db.layout, db.collapsed, db.schema })
+        assert.same({ "vertical", false, 4 }, { db.layout, db.collapsed, db.schema })
     end)
 
     it("an old schema-1 save keeps every value and its position", function()
@@ -139,7 +139,7 @@ describe("Schema 2: layout and collapsed", function()
             point = "TOPLEFT", relativePoint = "BOTTOMLEFT", x = 377, y = 447 })
         assert.same({ 0.4, true, 1.25, "deDE", "TOPLEFT", "BOTTOMLEFT", 377, 447 },
             { db.opacity, db.locked, db.scale, db.language, db.point, db.relativePoint, db.x, db.y })
-        assert.same({ "vertical", false, 3 }, { db.layout, db.collapsed, db.schema })
+        assert.same({ "vertical", false, 4 }, { db.layout, db.collapsed, db.schema })
     end)
 
     it("keeps a saved horizontal / collapsed choice and turns an unknown layout into vertical", function()
@@ -186,10 +186,10 @@ describe("Schema 3: PaTiSuite remembers shown/hidden over /reload", function()
         return { { name = "PaTiHeal", frame = heal }, { name = "PaTiTank", frame = tank } }
     end
 
-    it("schema 2 → 3 keeps every setting and the position, starts with no remembered windows", function()
+    it("schema 2 → 4 keeps every setting and the position, starts with no remembered windows", function()
         local db = load().Migrate({ schema = 2, opacity = 0.4, locked = true, scale = 1.25, language = "deDE",
             layout = "horizontal", collapsed = true, point = "TOPLEFT", x = 7, y = 8 })
-        assert.same({ 0.4, true, 1.25, "deDE", "horizontal", true, "TOPLEFT", 7, 8, 3 }, { db.opacity, db.locked,
+        assert.same({ 0.4, true, 1.25, "deDE", "horizontal", true, "TOPLEFT", 7, 8, 4 }, { db.opacity, db.locked,
             db.scale, db.language, db.layout, db.collapsed, db.point, db.x, db.y, db.schema })
         assert.same({}, db.visibility)
     end)
@@ -261,5 +261,47 @@ describe("Logic.Arrange: horizontal row with the 'all' button as its last elemen
         assert.equal(30, wide - narrow)
         local points = Logic.Arrange({ 40, 60, 50, 120 }, "horizontal", 22, 4, 270)
         assert.same({ x = 0, y = 22 }, points[4]) -- 162 + 120 > 270: wraps instead of being cut off
+    end)
+end)
+
+describe("Suite order with PaTiRota, PaTiGroup and PaTiLead (2026-10-02)", function()
+    it("lists every runtime addon in the suite order; Group and Lead are separate entries", function()
+        local Logic = load()
+        local registry = {}
+        for _, name in ipairs({ "PaTiAlerts", "PaTiSocial", "PaTiDungeon", "PaTiQuest", "PaTiLead", "PaTiGroup",
+            "PaTiRota", "PaTiTank", "PaTiAuras", "PaTiHeal", "PaTiSuite" }) do
+            registry[name] = frame(true)
+        end
+        local names = {}
+        for _, entry in ipairs(Logic.Entries(registry, "PaTiSuite")) do names[#names + 1] = Logic.Label(entry.name) end
+        assert.same({ "Heal", "Auras", "Tank", "Rota", "Group", "Lead", "Quest", "Dungeon", "Social", "Alerts" }, names)
+    end)
+end)
+
+describe("Schema 4: the old PaTiGroup visibility belongs to PaTiLead", function()
+    it("a remembered PaTiGroup choice moves to PaTiLead; the new PaTiGroup starts without an override", function()
+        local db = load().Migrate({ schema = 3, visibility = { PaTiGroup = false, PaTiHeal = true } })
+        assert.same({ PaTiLead = false, PaTiHeal = true }, db.visibility)
+        assert.equal(4, db.schema)
+    end)
+
+    it("an own PaTiLead entry wins; the old PaTiGroup entry is dropped anyway", function()
+        local db = load().Migrate({ schema = 3, visibility = { PaTiGroup = false, PaTiLead = true } })
+        assert.same({ PaTiLead = true }, db.visibility)
+    end)
+
+    it("runs once: after schema 4 a PaTiGroup entry is the new addon's own choice and stays", function()
+        local Logic = load()
+        local db = Logic.Migrate({ schema = 3, visibility = { PaTiGroup = true } })
+        db.visibility.PaTiGroup = false -- the player hides the new PaTiGroup later
+        db = Logic.Migrate(db)
+        assert.same({ PaTiLead = true, PaTiGroup = false }, db.visibility)
+    end)
+
+    it("older saves (schema 1/2) and new characters migrate without errors", function()
+        local Logic = load()
+        assert.same({}, Logic.Migrate({ schema = 2 }).visibility)
+        assert.same({}, Logic.Migrate(nil).visibility)
+        assert.equal(4, Logic.Migrate(nil).schema)
     end)
 end)

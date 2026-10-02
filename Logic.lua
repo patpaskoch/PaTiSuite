@@ -5,10 +5,10 @@ local _, ns = ...
 local Logic = {}
 ns.Logic = Logic
 
-Logic.SCHEMA = 3
+Logic.SCHEMA = 4
 Logic.SCALES = { 0.8, 0.9, 1, 1.1, 1.25, 1.5 }
-Logic.ORDER = { "PaTiHeal", "PaTiAuras", "PaTiTank", "PaTiGroup", "PaTiQuest", "PaTiDungeon", "PaTiSocial",
-    "PaTiAlerts" }
+Logic.ORDER = { "PaTiHeal", "PaTiAuras", "PaTiTank", "PaTiRota", "PaTiGroup", "PaTiLead", "PaTiQuest", "PaTiDungeon",
+    "PaTiSocial", "PaTiAlerts" }
 Logic.LAYOUTS = { "vertical", "horizontal" }
 -- Horizontal: the row may use this share of the screen width before it wraps (PaTiSuite.lua computes the px).
 Logic.SCREEN_SHARE = 0.9
@@ -33,6 +33,9 @@ end
 -- Schema 2 (2026-10-02) adds layout and collapsed; schema 3 (2026-10-02) adds visibility = { [addonName] = true |
 -- false }: what the player chose in PaTiSuite. A missing entry = PaTiSuite leaves that window as the addon starts it.
 -- Every older value and the position stay as they are; anything else in visibility is dropped.
+-- Schema 4 (2026-10-02): the former PaTiGroup (markers, ready check) is now PaTiLead and "PaTiGroup" a new addon
+-- (party awareness). A remembered visibility.PaTiGroup belonged to the old one: it moves to PaTiLead (unless PaTiLead
+-- already has its own entry), so the new PaTiGroup starts without an old override.
 function Logic.Migrate(db)
     db = db or {}
     for key, value in pairs(Logic.DEFAULTS) do
@@ -44,6 +47,10 @@ function Logic.Migrate(db)
         if type(name) == "string" and type(shown) == "boolean" then visibility[name] = shown end
     end
     db.visibility = visibility
+    if (db.schema or 0) < 4 and visibility.PaTiGroup ~= nil then
+        if visibility.PaTiLead == nil then visibility.PaTiLead = visibility.PaTiGroup end
+        visibility.PaTiGroup = nil
+    end
     db.schema = Logic.SCHEMA
     return db
 end
