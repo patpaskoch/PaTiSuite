@@ -325,3 +325,26 @@ describe("Logic.SetAllThemes (PaTiSuite: one theme for all windows)", function()
         assert.same({ "PaTiHeal=dracula", "PaTiRota=dracula" }, calls)
     end)
 end)
+
+describe("Restore Defaults resets the global theme (PaTiSuite)", function()
+    it("PaTiSuite goes back to default and every window gets SetSuiteTheme(\"default\"); others are skipped", function()
+        local Logic = load()
+        local db = Logic.Migrate({ theme = "dracula" })
+        local received = {}
+        local function themed(name)
+            local f = frame(true)
+            f.theme = "dracula"
+            f.SetSuiteTheme = function(self, id) self.theme = id; received[#received + 1] = name; return true end
+            return f
+        end
+        local heal, tank, broken = themed("PaTiHeal"), themed("PaTiTank"), frame(true)
+        broken.SetSuiteTheme = function() error("broken window") end
+        local entries = { { name = "PaTiHeal", frame = heal }, { name = "PaTiAuras", frame = broken },
+            { name = "PaTiDungeon", frame = frame(true) }, { name = "PaTiTank", frame = tank } }
+        Logic.RestoreDefaults(db)
+        assert.equal("default", db.theme)
+        assert.same({ "PaTiHeal", "PaTiTank" }, Logic.SetAllThemes(entries, db.theme))
+        assert.same({ "default", "default" }, { heal.theme, tank.theme })
+        assert.same({ "PaTiHeal", "PaTiTank" }, received) -- the broken window did not stop PaTiTank
+    end)
+end)

@@ -186,6 +186,8 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
   - ✅ VERIFIED 2026-10-03
   - Owner: „Theme funktioniert sehr gut, der Wechsel funktioniert.“ (Nicht daraus abgeleitet: Persistenz nach
     `/reload`/Relog, Wechsel im Kampf, jede Farbe jedes Controls, alle Themes im Detail — PT-SUITE-160–166 bleiben offen.)
+- [ ] PT-SUITE-168 PaTiSuite → „Standard wiederherstellen“: alle geladenen PaTi-Fenster wechseln auf Default (nicht nur
+  PaTiSuite); jedes Addon behält Default nach `/reload`
 
 ## SavedVariables
 

@@ -208,6 +208,9 @@ local function buildSettings()
     modal:Finish(function()
         Logic.RestoreDefaults(DB)
         window:ApplyTheme() -- Restore Defaults: theme back to default
+        -- The theme chosen in PaTiSuite applies to all windows, so its reset does too — through each window's own
+        -- SetSuiteTheme (every addon stores its theme itself; PaTiSuite writes no other SavedVariables).
+        Logic.SetAllThemes(Logic.Entries(UI.WindowRegistry(), SELF), DB.theme)
         window:ApplyOpacity()
         UI.SetLanguage(DB.language)
         window:SetLocked(DB.locked)
