@@ -181,6 +181,11 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
   Checkboxen und das TEST-Badge; keine Fläche bleibt in der alten Farbe
 - [ ] PT-SUITE-166 Theme-Wechsel im Kampf: kein Lua-Fehler, kein `ADDON_ACTION_BLOCKED`; Secure-Fenster (Heal, Auras, Rota,
   Lead) funktionieren danach unverändert
+- [x] PT-SUITE-167 Live-Themewechsel: das Theme lässt sich im echten Client wechseln, die sichtbare PaTi-UI übernimmt
+  die neue Darstellung sofort
+  - ✅ VERIFIED 2026-10-03
+  - Owner: „Theme funktioniert sehr gut, der Wechsel funktioniert.“ (Nicht daraus abgeleitet: Persistenz nach
+    `/reload`/Relog, Wechsel im Kampf, jede Farbe jedes Controls, alle Themes im Detail — PT-SUITE-160–166 bleiben offen.)
 
 ## SavedVariables
 
