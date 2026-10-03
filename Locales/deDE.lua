@@ -7,6 +7,7 @@ ns.Locales.deDE = L
 L.SHOW_ALL = "Alle einblenden"
 L.HIDE_ALL = "Alle ausblenden"
 L.GENERAL = "Allgemein"
+L.THEME_ALL_HINT = "Das hier gewählte Theme gilt für alle geladenen PaTi-Fenster."
 L.DISPLAY = "Darstellung"
 L.LAYOUT = "Layout"
 L.VERTICAL = "Vertikal"

@@ -305,3 +305,23 @@ describe("Schema 4: the old PaTiGroup visibility belongs to PaTiLead", function(
         assert.equal(4, Logic.Migrate(nil).schema)
     end)
 end)
+
+describe("Logic.SetAllThemes (PaTiSuite: one theme for all windows)", function()
+    it("asks each window through its own SetSuiteTheme; skips windows without it and failing ones", function()
+        local Logic = load()
+        local calls = {}
+        local function themed(name, result)
+            local f = frame(true)
+            f.SetSuiteTheme = function(_, id) calls[#calls + 1] = name .. "=" .. id; return result end
+            return f
+        end
+        local failing = frame(true)
+        failing.SetSuiteTheme = function() error("broken") end
+        local entries = { { name = "PaTiHeal", frame = themed("PaTiHeal", true) },
+            { name = "PaTiTank", frame = frame(true) }, -- older PaTiShared: no contract
+            { name = "PaTiAuras", frame = failing },
+            { name = "PaTiRota", frame = themed("PaTiRota", false) } } -- not loaded yet (no DB)
+        assert.same({ "PaTiHeal" }, Logic.SetAllThemes(entries, "dracula"))
+        assert.same({ "PaTiHeal=dracula", "PaTiRota=dracula" }, calls)
+    end)
+end)

@@ -167,6 +167,21 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
 - [ ] PT-SUITE-154 Im Kampf am Header verschieben: Tank, Group, Quest, Dungeon, Social, Alerts und Suite lassen sich ziehen,
   Heal, Auras, Rota und Lead nicht (Secure-Buttons); kein Lua-Fehler, kein `ADDON_ACTION_BLOCKED`; gesperrte Fenster nie
 
+## Themes (alle Fenster)
+
+- [ ] PT-SUITE-160 Default: alle PaTi-Fenster sehen aus wie vor den Themes (Farben, Rahmen, Hover, Akzent-Blau)
+- [ ] PT-SUITE-161 Einstellungen → Fenster → Theme „WoForever“ in einem Addon: warmes Braun, Gold-/Bronzerahmen, gut lesbar;
+  gleiche Größen und Positionen wie Default
+- [ ] PT-SUITE-162 Theme „Dracula“: dunkel, Lila-Akzent, rosa Hover-Rahmen, Mana cyan; Warnung/Gefahr/Erfolg klar
+  unterscheidbar; gleiche Geometrie
+- [ ] PT-SUITE-163 Theme bleibt pro Addon nach `/reload` und Relog; „Standard wiederherstellen“ setzt es auf Default
+- [ ] PT-SUITE-164 PaTiSuite → Einstellungen → Theme: alle geladenen PaTi-Fenster wechseln gemeinsam; jedes behält das Theme
+  nach `/reload` (jedes Addon speichert es selbst)
+- [ ] PT-SUITE-165 Theme-Wechsel betrifft auch Menüs, Einstellungsfenster, Tooltips-Farben, Buttons (Hover, gesperrt),
+  Checkboxen und das TEST-Badge; keine Fläche bleibt in der alten Farbe
+- [ ] PT-SUITE-166 Theme-Wechsel im Kampf: kein Lua-Fehler, kein `ADDON_ACTION_BLOCKED`; Secure-Fenster (Heal, Auras, Rota,
+  Lead) funktionieren danach unverändert
+
 ## SavedVariables
 
 - [ ] PT-SUITE-060 Einstellungen (Sprache, Größe, Sperre, Deckkraft) bleiben nach `/reload`

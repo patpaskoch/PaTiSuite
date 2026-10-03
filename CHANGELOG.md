@@ -4,6 +4,7 @@ Format: `## [Unreleased]` / `## [x.y.z] - YYYY-MM-DD` with Added, Changed, Fixed
 
 ## [Unreleased] — 0.1.0
 ### Added
+- Themes (owner wish 2026-10-03): Settings → Window → Theme — Default (the PaTi look as before), WoForever (warm brown, gold/bronze) or Dracula (dark, purple/pink/cyan accents). Colours only; layout, secure buttons and behaviour are unchanged. Saved per character in this addon (`theme`, unknown values → Default); Restore Defaults returns to Default. PaTiSuite can switch all PaTi windows at once.
 - New windows in the list (2026-10-02): PaTiRota and the new PaTiGroup (party awareness); the former PaTiGroup is now
   PaTiLead. Order: Heal, Auras, Tank, Rota, Group, Lead, Quest, Dungeon, Social, Alerts. Group and Lead are separate
   entries. `PaTiSuiteDB` schema 4: a remembered `visibility.PaTiGroup` belonged to the old marker addon and moves to

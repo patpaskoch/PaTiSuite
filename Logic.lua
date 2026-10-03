@@ -16,6 +16,7 @@ Logic.SCREEN_SHARE = 0.9
 -- Position (point, relativePoint, x, y) is written by the PaTiShared window, not listed here.
 Logic.DEFAULTS = {
     opacity = 0.75,
+    theme = "default", -- "default" | "woforever" | "dracula" (PaTiShared UI.THEMES; colours only)
     locked = false,
     scale = 1,
     language = "auto",
@@ -43,6 +44,8 @@ function Logic.Migrate(db)
     end
     -- A broken scale would make SetScale fail on login: only a sane number is kept (saved values elsewhere stay).
     if type(db.scale) ~= "number" or db.scale < 0.5 or db.scale > 2 then db.scale = Logic.DEFAULTS.scale end
+    -- Theme: one of the three PaTiShared themes; a typo or an old value falls back to the default look.
+    if db.theme ~= "default" and db.theme ~= "woforever" and db.theme ~= "dracula" then db.theme = "default" end
     if not validLayout(db.layout) then db.layout = Logic.DEFAULTS.layout end
     if type(db.schema) ~= "number" then db.schema = nil end -- broken schema: run every step (they are idempotent)
     local visibility = {}
@@ -180,4 +183,19 @@ function Logic.ApplySaved(entries, visibility, inCombat)
         end
     end
     return blocked
+end
+
+-- Theme for all PaTi windows (owner wish 2026-10-03): asks every listed window to switch through its own
+-- SetSuiteTheme (the addon stores the theme in its own SavedVariables — PaTiSuite never writes them). Windows of
+-- addons without the contract (older PaTiShared) or that fail are skipped. Returns the names that were switched.
+function Logic.SetAllThemes(entries, themeId)
+    local switched = {}
+    for _, entry in ipairs(entries) do
+        local frame = entry.frame
+        if type(frame.SetSuiteTheme) == "function" then
+            local ok, done = pcall(frame.SetSuiteTheme, frame, themeId)
+            if ok and done ~= false then switched[#switched + 1] = entry.name end
+        end
+    end
+    return switched
 end

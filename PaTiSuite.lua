@@ -40,7 +40,7 @@ local function newRow(index)
     -- Hover like the PaTiShared popup: a background texture under the text (a HIGHLIGHT layer would cover it).
     local hover = row:CreateTexture(nil, "BACKGROUND")
     hover:SetAllPoints()
-    hover:SetColorTexture(UI.Color("PanelHover"))
+    UI.Paint(hover, "SetColorTexture", "PanelHover")
     hover:Hide()
     row:HookScript("OnEnter", function() hover:Show() end)
     row:HookScript("OnLeave", function() hover:Hide() end)
@@ -190,7 +190,11 @@ local function buildSettings()
         get = function() return window:IsLocked() end,
         set = function(locked) window:SetLocked(locked) end,
     }))
-    UI.AddWindowSettings(modal, window)
+    -- The theme chosen here is passed on to every listed PaTi window; each addon stores it itself.
+    UI.AddWindowSettings(modal, window, nil, function(id)
+        Logic.SetAllThemes(Logic.Entries(UI.WindowRegistry(), SELF), id)
+    end)
+    modal:AddLabel("THEME_ALL_HINT")
     modal:AddSection("DISPLAY")
     local layouts = {}
     for _, layout in ipairs(Logic.LAYOUTS) do
@@ -203,6 +207,7 @@ local function buildSettings()
     }))
     modal:Finish(function()
         Logic.RestoreDefaults(DB)
+        window:ApplyTheme() -- Restore Defaults: theme back to default
         window:ApplyOpacity()
         UI.SetLanguage(DB.language)
         window:SetLocked(DB.locked)
@@ -312,3 +317,4 @@ events:SetScript("OnEvent", function(_, event)
     refresh()
 end)
 UI.OnLanguageChanged(function() refresh() end)
+UI.OnThemeChanged(function() refresh() end)

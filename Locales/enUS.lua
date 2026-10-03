@@ -7,6 +7,7 @@ ns.Locales.enUS = L
 L.SHOW_ALL = "Show all"
 L.HIDE_ALL = "Hide all"
 L.GENERAL = "General"
+L.THEME_ALL_HINT = "The theme chosen here applies to every loaded PaTi window."
 L.DISPLAY = "Display"
 L.LAYOUT = "Layout"
 L.VERTICAL = "Vertical"
