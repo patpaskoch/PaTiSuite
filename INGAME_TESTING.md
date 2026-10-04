@@ -174,7 +174,9 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
   gleiche Größen und Positionen wie Default
 - [ ] PT-SUITE-162 Theme „Dracula“: dunkel, Lila-Akzent, rosa Hover-Rahmen, Mana cyan; Warnung/Gefahr/Erfolg klar
   unterscheidbar; gleiche Geometrie
-- [ ] PT-SUITE-163 Theme bleibt pro Addon nach `/reload` und Relog; „Standard wiederherstellen“ setzt es auf Default
+- [x] PT-SUITE-163 Theme bleibt pro Addon nach `/reload` und Relog; „Standard wiederherstellen“ setzt es auf Default
+  - ✅ VERIFIED 2026-10-04
+  - Owner: das gewählte Theme bleibt nach `/reload` erhalten.
 - [ ] PT-SUITE-164 PaTiSuite → Einstellungen → Theme: alle geladenen PaTi-Fenster wechseln gemeinsam; jedes behält das Theme
   nach `/reload` (jedes Addon speichert es selbst)
 - [ ] PT-SUITE-165 Theme-Wechsel betrifft auch Menüs, Einstellungsfenster, Tooltips-Farben, Buttons (Hover, gesperrt),
@@ -186,8 +188,10 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
   - ✅ VERIFIED 2026-10-03
   - Owner: „Theme funktioniert sehr gut, der Wechsel funktioniert.“ (Nicht daraus abgeleitet: Persistenz nach
     `/reload`/Relog, Wechsel im Kampf, jede Farbe jedes Controls, alle Themes im Detail — PT-SUITE-160–166 bleiben offen.)
-- [ ] PT-SUITE-168 PaTiSuite → „Standard wiederherstellen“: alle geladenen PaTi-Fenster wechseln auf Default (nicht nur
+- [x] PT-SUITE-168 PaTiSuite → „Standard wiederherstellen“: alle geladenen PaTi-Fenster wechseln auf Default (nicht nur
   PaTiSuite); jedes Addon behält Default nach `/reload`
+  - ✅ VERIFIED 2026-10-04
+  - Owner: „Standard wiederherstellen“ in PaTiSuite setzt alle PaTi-Fenster auf Default.
 
 ## SavedVariables
 
