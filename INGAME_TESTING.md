@@ -233,3 +233,8 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
   verschiebbar)
   - 🔧 FIX IMPLEMENTED 2026-10-07 (Owner-Wunsch: Abschnitte klarer trennen, in allen Addons)
   - MANUAL RETEST REQUIRED
+- [ ] PT-SUITE-903 Einstellungen aller Addons: oben rechts neben dem X ein Schalter „Testmodus“ (nur bei Addons mit Testmodus;
+  schaltet wie `/… test`, im Kampf wie dort gesperrt); unten Abschnitt „Befehle“ mit allen /-Befehlen und kurzer
+  Erklärung; Fenster weiter an der Titelleiste verschiebbar
+  - 🔧 FIX IMPLEMENTED 2026-10-07 (Owner-Wunsch: Testmodus und Befehle in den Einstellungen)
+  - MANUAL RETEST REQUIRED
