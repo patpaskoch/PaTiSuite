@@ -223,3 +223,8 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
 - ~~PT-SUITE-900 Fenster rasten beim Verschieben an anderen PaTi-Fenstern ein~~
   - ❌ FAIL 2026-09-30 – Einrasten funktionierte nicht.
   - RETIRED 2026-09-30 – Feature entfernt (PaTiShared).
+- [ ] PT-SUITE-901 Runde Ecken (PaTiShared): alle PaTi-Fenster, Knöpfe, Listen, Einstellungen und Badges haben leicht
+  abgerundete Ecken; keine eckigen Reste (z. B. am Fensterkopf), Ränder sauber in allen drei Themes und bei
+  niedriger Panel-Deckkraft; Klick und Hover unverändert
+  - 🔧 FIX IMPLEMENTED 2026-10-07 (Owner-Wunsch: Ecken 2–4 px runden)
+  - MANUAL RETEST REQUIRED
