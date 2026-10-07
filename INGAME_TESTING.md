@@ -228,3 +228,8 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
   niedriger Panel-Deckkraft; Klick und Hover unverändert
   - 🔧 FIX IMPLEMENTED 2026-10-07 (Owner-Wunsch: Ecken 2–4 px runden)
   - MANUAL RETEST REQUIRED
+- [ ] PT-SUITE-902 Einstellungen aller Addons: Abschnitte (z. B. Allgemein, Beobachten, Darstellung, Fenster) klar getrennt —
+  Abstand, dünne Trennlinie, Überschrift in Akzentfarbe; nichts überlappt, Fenster passt auf den Bildschirm (sonst
+  verschiebbar)
+  - 🔧 FIX IMPLEMENTED 2026-10-07 (Owner-Wunsch: Abschnitte klarer trennen, in allen Addons)
+  - MANUAL RETEST REQUIRED
