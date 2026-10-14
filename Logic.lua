@@ -5,9 +5,9 @@ local _, ns = ...
 local Logic = {}
 ns.Logic = Logic
 
-Logic.SCHEMA = 4
+Logic.SCHEMA = 5
 Logic.SCALES = { 0.8, 0.9, 1, 1.1, 1.25, 1.5 }
-Logic.ORDER = { "PaTiHeal", "PaTiAuras", "PaTiTank", "PaTiRota", "PaTiGroup", "PaTiLead", "PaTiQuest", "PaTiDungeon",
+Logic.ORDER = { "PaTiHeal", "PaTiAuras", "PaTiAggro", "PaTiRota", "PaTiGroup", "PaTiLead", "PaTiQuest", "PaTiDungeon",
     "PaTiSocial", "PaTiAlerts" }
 Logic.LAYOUTS = { "vertical", "horizontal" }
 -- Horizontal: the row may use this share of the screen width before it wraps (PaTiSuite.lua computes the px).
@@ -56,6 +56,11 @@ function Logic.Migrate(db)
     if (db.schema or 0) < 4 and visibility.PaTiGroup ~= nil then
         if visibility.PaTiLead == nil then visibility.PaTiLead = visibility.PaTiGroup end
         visibility.PaTiGroup = nil
+    end
+    -- Schema 5 (2026-10-14): PaTiTank was renamed PaTiAggro; its remembered visibility moves to the new name.
+    if (db.schema or 0) < 5 and visibility.PaTiTank ~= nil then
+        if visibility.PaTiAggro == nil then visibility.PaTiAggro = visibility.PaTiTank end
+        visibility.PaTiTank = nil
     end
     db.schema = Logic.SCHEMA
     return db

@@ -5,7 +5,7 @@ local function load()
     return wow.loadAddonFile("Logic.lua", {}).Logic
 end
 
--- A plain window (like PaTiTank's) or one with its own suite rules (like PaTiHeal's, blocked in combat).
+-- A plain window (like PaTiAggro's) or one with its own suite rules (like PaTiHeal's, blocked in combat).
 local function frame(shown, opts)
     opts = opts or {}
     local f = { shown = shown, calls = 0 }
@@ -25,16 +25,16 @@ end
 describe("Logic.Entries", function()
     it("lists only installed windows, in suite order, without the control panel itself", function()
         local Logic = load()
-        local registry = { PaTiTank = frame(true), PaTiHeal = frame(true), PaTiSuite = frame(true), PaTiZeta = frame(false) }
+        local registry = { PaTiAggro = frame(true), PaTiHeal = frame(true), PaTiSuite = frame(true), PaTiZeta = frame(false) }
         local names = {}
         for _, entry in ipairs(Logic.Entries(registry, "PaTiSuite")) do names[#names + 1] = entry.name end
-        assert.same({ "PaTiHeal", "PaTiTank", "PaTiZeta" }, names)
+        assert.same({ "PaTiHeal", "PaTiAggro", "PaTiZeta" }, names)
     end)
 
     it("ignores a missing registry, broken entries and frames without Show/Hide", function()
         local Logic = load()
         assert.same({}, Logic.Entries(nil, "PaTiSuite"))
-        assert.same({}, Logic.Entries({ PaTiHeal = "x", PaTiTank = {}, [5] = frame(true) }, "PaTiSuite"))
+        assert.same({}, Logic.Entries({ PaTiHeal = "x", PaTiAggro = {}, [5] = frame(true) }, "PaTiSuite"))
     end)
 end)
 
@@ -42,7 +42,7 @@ describe("Logic.Toggle / SetAll", function()
     it("toggles one window: visible → hidden → visible", function()
         local Logic = load()
         local tank = frame(true)
-        local entry = { name = "PaTiTank", frame = tank }
+        local entry = { name = "PaTiAggro", frame = tank }
         assert.is_true(Logic.Toggle(entry, false))
         assert.is_false(tank.shown)
         assert.is_true(Logic.Toggle(entry, false))
@@ -52,7 +52,7 @@ describe("Logic.Toggle / SetAll", function()
     it("shows all and hides all installed windows, touching only those that change", function()
         local Logic = load()
         local heal, tank = frame(false, { suite = true }), frame(true)
-        local entries = { { name = "PaTiHeal", frame = heal }, { name = "PaTiTank", frame = tank } }
+        local entries = { { name = "PaTiHeal", frame = heal }, { name = "PaTiAggro", frame = tank } }
         assert.same({}, Logic.SetAll(entries, true, false))
         assert.is_true(heal.shown and tank.shown)
         assert.equal(0, tank.calls)
@@ -66,7 +66,7 @@ describe("Logic.Toggle / SetAll", function()
         local raw = frame(true, { protected = true })            -- protected, no suite rules
         local tank = frame(true)
         local blocked = Logic.SetAll({ { name = "PaTiHeal", frame = heal }, { name = "PaTiRaw", frame = raw },
-            { name = "PaTiTank", frame = tank } }, false, true)
+            { name = "PaTiAggro", frame = tank } }, false, true)
         assert.same({ "PaTiHeal", "PaTiRaw" }, blocked)
         assert.is_true(heal.shown and raw.shown)
         assert.equal(0, raw.calls)
@@ -106,7 +106,7 @@ describe("Logic.AllTarget (one button for show all / hide all)", function()
     it("hides all when every window is shown, otherwise shows all; one click flips the label", function()
         local Logic = load()
         local heal, tank = frame(true, { suite = true }), frame(false)
-        local entries = { { name = "PaTiHeal", frame = heal }, { name = "PaTiTank", frame = tank } }
+        local entries = { { name = "PaTiHeal", frame = heal }, { name = "PaTiAggro", frame = tank } }
         assert.is_true(Logic.AllTarget(entries)) -- one hidden → "Show all"
         Logic.SetAll(entries, Logic.AllTarget(entries), false)
         assert.is_true(heal.shown and tank.shown)
@@ -119,7 +119,7 @@ describe("Logic.AllTarget (one button for show all / hide all)", function()
     it("keeps the combat rule: a blocked window stays, the button then offers show all", function()
         local Logic = load()
         local heal, tank = frame(true, { suite = true, blocked = true }), frame(true)
-        local entries = { { name = "PaTiHeal", frame = heal }, { name = "PaTiTank", frame = tank } }
+        local entries = { { name = "PaTiHeal", frame = heal }, { name = "PaTiAggro", frame = tank } }
         assert.same({ "PaTiHeal" }, Logic.SetAll(entries, Logic.AllTarget(entries), true))
         assert.is_true(heal.shown)
         assert.is_false(tank.shown)
@@ -131,7 +131,7 @@ end)
 describe("Schema 2: layout and collapsed", function()
     it("new saves get vertical and expanded", function()
         local db = load().Migrate(nil)
-        assert.same({ "vertical", false, 4 }, { db.layout, db.collapsed, db.schema })
+        assert.same({ "vertical", false, 5 }, { db.layout, db.collapsed, db.schema })
     end)
 
     it("an old schema-1 save keeps every value and its position", function()
@@ -139,7 +139,7 @@ describe("Schema 2: layout and collapsed", function()
             point = "TOPLEFT", relativePoint = "BOTTOMLEFT", x = 377, y = 447 })
         assert.same({ 0.4, true, 1.25, "deDE", "TOPLEFT", "BOTTOMLEFT", 377, 447 },
             { db.opacity, db.locked, db.scale, db.language, db.point, db.relativePoint, db.x, db.y })
-        assert.same({ "vertical", false, 4 }, { db.layout, db.collapsed, db.schema })
+        assert.same({ "vertical", false, 5 }, { db.layout, db.collapsed, db.schema })
     end)
 
     it("keeps a saved horizontal / collapsed choice and turns an unknown layout into vertical", function()
@@ -183,21 +183,21 @@ end)
 
 describe("Schema 3: PaTiSuite remembers shown/hidden over /reload", function()
     local function entriesOf(heal, tank)
-        return { { name = "PaTiHeal", frame = heal }, { name = "PaTiTank", frame = tank } }
+        return { { name = "PaTiHeal", frame = heal }, { name = "PaTiAggro", frame = tank } }
     end
 
-    it("schema 2 → 4 keeps every setting and the position, starts with no remembered windows", function()
+    it("schema 2 → 5 keeps every setting and the position, starts with no remembered windows", function()
         local db = load().Migrate({ schema = 2, opacity = 0.4, locked = true, scale = 1.25, language = "deDE",
             layout = "horizontal", collapsed = true, point = "TOPLEFT", x = 7, y = 8 })
-        assert.same({ 0.4, true, 1.25, "deDE", "horizontal", true, "TOPLEFT", 7, 8, 4 }, { db.opacity, db.locked,
+        assert.same({ 0.4, true, 1.25, "deDE", "horizontal", true, "TOPLEFT", 7, 8, 5 }, { db.opacity, db.locked,
             db.scale, db.language, db.layout, db.collapsed, db.point, db.x, db.y, db.schema })
         assert.same({}, db.visibility)
     end)
 
     it("keeps valid entries and drops broken ones; Restore Defaults forgets them all", function()
         local Logic = load()
-        local db = Logic.Migrate({ visibility = { PaTiHeal = false, PaTiTank = true, PaTiQuest = "no", [3] = true } })
-        assert.same({ PaTiHeal = false, PaTiTank = true }, db.visibility)
+        local db = Logic.Migrate({ visibility = { PaTiHeal = false, PaTiAggro = true, PaTiQuest = "no", [3] = true } })
+        assert.same({ PaTiHeal = false, PaTiAggro = true }, db.visibility)
         assert.same({}, Logic.Migrate({ visibility = "broken" }).visibility)
         assert.same({}, Logic.RestoreDefaults(db).visibility)
     end)
@@ -207,14 +207,14 @@ describe("Schema 3: PaTiSuite remembers shown/hidden over /reload", function()
         local heal, tank = frame(true, { suite = true }), frame(false)
         assert.same({}, Logic.ApplySaved(entriesOf(heal, tank), {}, false))
         assert.same({ true, false, 0, 0 }, { heal.shown, tank.shown, heal.calls, tank.calls })
-        assert.same({}, Logic.ApplySaved(entriesOf(heal, tank), { PaTiHeal = false, PaTiTank = true }, false))
+        assert.same({}, Logic.ApplySaved(entriesOf(heal, tank), { PaTiHeal = false, PaTiAggro = true }, false))
         assert.same({ false, true }, { heal.shown, tank.shown })
     end)
 
     it("login restore in combat: a blocked window is named for after combat, nothing else changes", function()
         local Logic = load()
         local heal, tank = frame(true, { suite = true, blocked = true }), frame(true)
-        assert.same({ "PaTiHeal" }, Logic.ApplySaved(entriesOf(heal, tank), { PaTiHeal = false, PaTiTank = false }, true))
+        assert.same({ "PaTiHeal" }, Logic.ApplySaved(entriesOf(heal, tank), { PaTiHeal = false, PaTiAggro = false }, true))
         assert.same({ true, false }, { heal.shown, tank.shown })
     end)
 
@@ -234,10 +234,10 @@ describe("Schema 3: PaTiSuite remembers shown/hidden over /reload", function()
         local visibility = { PaTiHeal = true }
         local heal, tank = frame(true, { suite = true, blocked = true }), frame(true)
         Logic.SetAll(entriesOf(heal, tank), false, true, visibility) -- hide all in combat: Heal is blocked
-        assert.same({ PaTiHeal = true, PaTiTank = false }, visibility)
+        assert.same({ PaTiHeal = true, PaTiAggro = false }, visibility)
         heal = frame(false, { suite = true })
         Logic.SetAll(entriesOf(heal, tank), true, false, visibility)
-        assert.same({ PaTiHeal = true, PaTiTank = true }, visibility)
+        assert.same({ PaTiHeal = true, PaTiAggro = true }, visibility)
     end)
 end)
 
@@ -269,12 +269,12 @@ describe("Suite order with PaTiRota, PaTiGroup and PaTiLead (2026-10-02)", funct
         local Logic = load()
         local registry = {}
         for _, name in ipairs({ "PaTiAlerts", "PaTiSocial", "PaTiDungeon", "PaTiQuest", "PaTiLead", "PaTiGroup",
-            "PaTiRota", "PaTiTank", "PaTiAuras", "PaTiHeal", "PaTiSuite" }) do
+            "PaTiRota", "PaTiAggro", "PaTiAuras", "PaTiHeal", "PaTiSuite" }) do
             registry[name] = frame(true)
         end
         local names = {}
         for _, entry in ipairs(Logic.Entries(registry, "PaTiSuite")) do names[#names + 1] = Logic.Label(entry.name) end
-        assert.same({ "Heal", "Auras", "Tank", "Rota", "Group", "Lead", "Quest", "Dungeon", "Social", "Alerts" }, names)
+        assert.same({ "Heal", "Auras", "Aggro", "Rota", "Group", "Lead", "Quest", "Dungeon", "Social", "Alerts" }, names)
     end)
 end)
 
@@ -282,7 +282,7 @@ describe("Schema 4: the old PaTiGroup visibility belongs to PaTiLead", function(
     it("a remembered PaTiGroup choice moves to PaTiLead; the new PaTiGroup starts without an override", function()
         local db = load().Migrate({ schema = 3, visibility = { PaTiGroup = false, PaTiHeal = true } })
         assert.same({ PaTiLead = false, PaTiHeal = true }, db.visibility)
-        assert.equal(4, db.schema)
+        assert.equal(5, db.schema)
     end)
 
     it("an own PaTiLead entry wins; the old PaTiGroup entry is dropped anyway", function()
@@ -318,7 +318,7 @@ describe("Logic.SetAllThemes (PaTiSuite: one theme for all windows)", function()
         local failing = frame(true)
         failing.SetSuiteTheme = function() error("broken") end
         local entries = { { name = "PaTiHeal", frame = themed("PaTiHeal", true) },
-            { name = "PaTiTank", frame = frame(true) }, -- older PaTiShared: no contract
+            { name = "PaTiAggro", frame = frame(true) }, -- older PaTiShared: no contract
             { name = "PaTiAuras", frame = failing },
             { name = "PaTiRota", frame = themed("PaTiRota", false) } } -- not loaded yet (no DB)
         assert.same({ "PaTiHeal" }, Logic.SetAllThemes(entries, "dracula"))
@@ -337,14 +337,24 @@ describe("Restore Defaults resets the global theme (PaTiSuite)", function()
             f.SetSuiteTheme = function(self, id) self.theme = id; received[#received + 1] = name; return true end
             return f
         end
-        local heal, tank, broken = themed("PaTiHeal"), themed("PaTiTank"), frame(true)
+        local heal, tank, broken = themed("PaTiHeal"), themed("PaTiAggro"), frame(true)
         broken.SetSuiteTheme = function() error("broken window") end
         local entries = { { name = "PaTiHeal", frame = heal }, { name = "PaTiAuras", frame = broken },
-            { name = "PaTiDungeon", frame = frame(true) }, { name = "PaTiTank", frame = tank } }
+            { name = "PaTiDungeon", frame = frame(true) }, { name = "PaTiAggro", frame = tank } }
         Logic.RestoreDefaults(db)
         assert.equal("default", db.theme)
-        assert.same({ "PaTiHeal", "PaTiTank" }, Logic.SetAllThemes(entries, db.theme))
+        assert.same({ "PaTiHeal", "PaTiAggro" }, Logic.SetAllThemes(entries, db.theme))
         assert.same({ "default", "default" }, { heal.theme, tank.theme })
-        assert.same({ "PaTiHeal", "PaTiTank" }, received) -- the broken window did not stop PaTiTank
+        assert.same({ "PaTiHeal", "PaTiAggro" }, received) -- the broken window did not stop PaTiAggro
+    end)
+end)
+
+describe("Schema 5: PaTiTank was renamed PaTiAggro (2026-10-14)", function()
+    it("a remembered PaTiTank choice moves to PaTiAggro; an own PaTiAggro entry wins", function()
+        local db = load().Migrate({ schema = 4, visibility = { PaTiTank = false, PaTiHeal = true } })
+        assert.same({ PaTiAggro = false, PaTiHeal = true }, db.visibility)
+        assert.equal(5, db.schema)
+        db = load().Migrate({ schema = 4, visibility = { PaTiTank = false, PaTiAggro = true } })
+        assert.same({ PaTiAggro = true }, db.visibility)
     end)
 end)

@@ -9,7 +9,7 @@ works exactly the same without it.
 > Status: 0.1.0, in development, not yet released. Partly tested in game ([`INGAME_TESTING.md`](INGAME_TESTING.md)).
 
 ## Features
-- Lists the PaTi addons that are installed and running (Heal, Auras, Tank, Rota, Group, Lead, Quest, Dungeon, Social,
+- Lists the PaTi addons that are installed and running (Heal, Auras, Aggro, Rota, Group, Lead, Quest, Dungeon, Social,
   Alerts) in a compact panel: a coloured dot and the short name — green = window shown, grey = hidden. A click on an entry
   shows or hides that window
 - One button for all windows: "Hide all" while every window is shown, otherwise "Show all"; the control panel
@@ -32,7 +32,7 @@ PaTiSuite is optional and only a control panel. No other addon needs it; every P
 - **PaTiSuite** – optional control panel to show and hide the PaTi windows *(this addon)*
 - [PaTiHeal](https://github.com/patpaskoch/PaTiHeal) – healing: party frames, heal target, click casting, HoTs, dispels
 - [PaTiAuras](https://github.com/patpaskoch/PaTiAuras) – buffs, procs, tracking, group buffs and weapon imbues
-- [PaTiTank](https://github.com/patpaskoch/PaTiTank) – tank HUD and aggro monitor
+- [PaTiAggro](https://github.com/patpaskoch/PaTiAggro) – aggro for tank, healer and damage (formerly PaTiTank)
 - [PaTiRota](https://github.com/patpaskoch/PaTiRota) – your own skill priority with cooldowns and fixed cast buttons
 - [PaTiGroup](https://github.com/patpaskoch/PaTiGroup) – party awareness: tank, healer, roles and the tank's target
 - [PaTiLead](https://github.com/patpaskoch/PaTiLead) – lead the group: raid markers, ready check and pull timer

@@ -51,7 +51,7 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
 - [ ] PT-SUITE-033 Sichtbares Fenster: grüner Punkt, Name hell, kein „Angezeigt“-Text
 - [ ] PT-SUITE-034 Ausgeblendetes Fenster: grauer Punkt, Name grau, kein „Ausgeblendet“-Text — auch wenn es im Addon
   selbst (z. B. `/pt hide`) ausgeblendet wurde
-- [ ] PT-SUITE-035 Reihenfolge: Heal, Auras, Tank, Rota, Group, Lead, Quest, Dungeon, Social, Alerts (nur die installierten)
+- [ ] PT-SUITE-035 Reihenfolge: Heal, Auras, Aggro (früher Tank), Rota, Group, Lead, Quest, Dungeon, Social, Alerts (nur die installierten)
 - [ ] PT-SUITE-036 „Group“ (neue Gruppenübersicht) und „Lead“ (Marker, Ready Check) sind zwei getrennte Einträge;
   jeder blendet nur sein eigenes Fenster ein/aus
 - [ ] PT-SUITE-037 Update von der alten Installation: war „Group“ (altes Marker-Addon) in PaTiSuite ausgeblendet, ist
@@ -71,7 +71,7 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
   - RETIRED 2026-09-30 – ersetzt durch PT-SUITE-048.
 - [ ] PT-SUITE-044 `/psuite showall` und `/psuite hideall` wie die Buttons
 - [ ] PT-SUITE-045 Im Kampf „Alle ausblenden“ (Button oder `/psuite hideall`): Heal, Auras, Rota, Lead bleiben und werden genannt
-  („Heal: im Kampf nicht möglich“), Tank/Quest/Dungeon/Alerts werden ausgeblendet
+  („Heal: im Kampf nicht möglich“), Aggro/Quest/Dungeon/Alerts werden ausgeblendet
 - [ ] PT-SUITE-046 Im Kampf Klick auf die Heal-, Auras-, Rota- oder Lead-Zeile ändert nichts und nennt den Grund (Group geht auch im Kampf)
 - [ ] PT-SUITE-047 Ohne PaTiSuite verhalten sich alle anderen Addons unverändert
 - [ ] PT-SUITE-048 Ein Button für alle: sind alle Fenster sichtbar, heißt er „Alle ausblenden“ und blendet alle aus
@@ -141,7 +141,7 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
   und bedienbar
 - [ ] PT-SUITE-131 „Alle einblenden“ → `/reload` → alle bleiben sichtbar
 - [ ] PT-SUITE-132 Ein einzelnes Addon über PaTiSuite ausblenden → `/reload` → bleibt ausgeblendet
-- [ ] PT-SUITE-133 Mischzustand (z. B. Heal aus, Tank an, Quest aus) → `/reload` → derselbe Mischzustand
+- [ ] PT-SUITE-133 Mischzustand (z. B. Heal aus, Aggro an, Quest aus) → `/reload` → derselbe Mischzustand
 - [ ] PT-SUITE-134 Im Kampf „Alle ausblenden“: Heal/Auras/Rota/Lead bleiben (Hinweis) → nach dem Kampf `/reload` →
   Heal/Auras/Rota/Lead sind nicht als ausgeblendet gespeichert, die anderen schon
 - [ ] PT-SUITE-135 Ein Fenster, das nur im Addon selbst ausgeblendet wurde (z. B. `/pt hide`), wird nicht
@@ -159,12 +159,12 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
 
 ## Fenster-Header (PaTiShared)
 
-- [ ] PT-SUITE-150 Titel in mehreren Fenstern (z. B. Heal, Auras, Tank, Suite): sichtbar und lesbar, aber deutlich
+- [ ] PT-SUITE-150 Titel in mehreren Fenstern (z. B. Heal, Auras, Aggro, Suite): sichtbar und lesbar, aber deutlich
   ruhiger als vorher (kleiner, grau, leicht transparent)
 - [ ] PT-SUITE-151 Gameplay-Inhalte unverändert kräftig: Lebensbalken, Warnungen, Aura-Texte, Aggro-Zeilen
 - [ ] PT-SUITE-152 Einstellungsfenster (Modals): Titel normal hell, nicht ausgegraut
 - [ ] PT-SUITE-153 ••• ist ruhig, beim Hover voll sichtbar und bedienbar; TEST-Badge im Test Mode gut sichtbar
-- [ ] PT-SUITE-154 Im Kampf am Header verschieben: Tank, Group, Quest, Dungeon, Social, Alerts und Suite lassen sich ziehen,
+- [ ] PT-SUITE-154 Im Kampf am Header verschieben: Aggro, Group, Quest, Dungeon, Social, Alerts und Suite lassen sich ziehen,
   Heal, Auras, Rota und Lead nicht (Secure-Buttons); kein Lua-Fehler, kein `ADDON_ACTION_BLOCKED`; gesperrte Fenster nie
 
 ## Themes (alle Fenster)

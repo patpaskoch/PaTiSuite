@@ -36,6 +36,8 @@ Format: `## [Unreleased]` / `## [x.y.z] - YYYY-MM-DD` with Added, Changed, Fixed
 - Hovering a line made it unreadable (owner test 2026-09-30): the hover texture sat in the HIGHLIGHT layer above the
   text. It is now a background shown on mouse-over, the text stays light.
 ### Changed
+- PaTiTank was renamed **PaTiAggro** (2026-10-14): listed as "Aggro" in its place; a remembered shown/hidden choice
+  for PaTiTank moves to PaTiAggro (settings schema 5).
 - "Restore Defaults" in PaTiSuite also sets every loaded PaTi window back to the Default theme (the theme chosen there
   applies to all; each addon stores it itself through `SetSuiteTheme`).
 - The window can also be moved in combat (it has no secure buttons; PaTiShared `SetCombatMovable`, hardening 2026-10-02). A broken saved position falls back to the default instead of breaking the login.
