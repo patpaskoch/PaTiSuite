@@ -302,7 +302,7 @@ describe("Schema 4: the old PaTiGroup visibility belongs to PaTiLead", function(
         local Logic = load()
         assert.same({}, Logic.Migrate({ schema = 2 }).visibility)
         assert.same({}, Logic.Migrate(nil).visibility)
-        assert.equal(4, Logic.Migrate(nil).schema)
+        assert.equal(5, Logic.Migrate(nil).schema)
     end)
 end)
 
