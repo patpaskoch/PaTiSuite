@@ -192,6 +192,8 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
   PaTiSuite); jedes Addon behält Default nach `/reload`
   - ✅ VERIFIED 2026-10-04
   - Owner: „Standard wiederherstellen“ in PaTiSuite setzt alle PaTi-Fenster auf Default.
+- [ ] PT-SUITE-169 Theme „Soft Fantasy“ (2026-10-19): in PaTiSuite und in den Einstellungen jedes Addons wählbar; alle
+  Fenster werden ruhig schiefer-blau mit lavendelfarbenem Akzent, alles lesbar; bleibt nach `/reload` erhalten
 
 ## SavedVariables
 
