@@ -2,33 +2,25 @@
 
 <img src="assets/icon-128.png" width="96" alt="PaTiSuite icon">
 
+## Install
+
+**📥 [Download PaTiSuite Beta](https://github.com/patpaskoch/PaTiSuite/releases/download/v0.1.0-beta.1/PaTiSuite-0.1.0-beta.1.zip)** · [Installation guide](#installation)
+
+*Installation-test preview — not yet a stable release.*
+
 ## What is PaTiSuite?
 
-> **Installation-test beta available:** [Download the current ZIP from Releases](https://github.com/patpaskoch/PaTiSuite/releases). This is an unverified preview for testing the installation, not a stable release.
+**Your addons. One simple place.**
 
-A tiny, optional control panel for World of Warcraft: Forever (Interface 16001): one line per installed PaTi addon
-to show or hide its window, plus **Show all** / **Hide all**. It is a remote control, nothing more — every PaTi addon
-works exactly the same without it.
-
-> Status: 0.1.0, in development, not yet stable. Partly tested in game ([`INGAME_TESTING.md`](INGAME_TESTING.md)).
+Love having the right tools, but not a screen full of windows? PaTiSuite gives your PaTi addons one little control panel. Open what you need, hide what you don't and get back to playing. **Everything in reach. Nothing in the way.**
 
 ## Features
 
-- Lists the PaTi addons that are installed and running (Heal, Auras, Aggro, Rota, Group, Lead, Quest, Dungeon, Social,
-  Alerts) in a compact panel: a coloured dot and the short name — green = window shown, grey = hidden. A click on an entry
-  shows or hides that window
-- One button for all windows: "Hide all" while every window is shown, otherwise "Show all"; the control panel
-  itself stays visible
-- Respects each addon's rules: windows with secure buttons (Heal, Auras, Rota, Lead) cannot be shown or hidden in combat —
-  PaTiSuite then says so (e.g. "Heal: not possible in combat") and changes nothing
-- Layout: vertical (one entry per line, button below, default) or horizontal (side by side, the button as the
-  last element of the row; wraps only when the screen is too narrow) — Settings → Display → Layout, at once
-- Remembers what you show or hide here: after `/reload` every window you switched in PaTiSuite is as you left it.
-  Windows you never switched here start as their addon starts them. Restore Defaults forgets this
-- ••• menu: Settings, Lock, Collapse/Expand (only the header stays), Reset position, Hide. Settings: language,
-  scale, lock, panel opacity, layout
-
-No test mode: the panel only shows your real windows, there is nothing to simulate.
+- **One home for your tools:** See the PaTi addons you have installed.
+- **Show or hide in a click:** Control individual addon windows.
+- **Clear your screen:** Show all or hide all with one action.
+- **Remember your choices:** Keep the visibility you set across reloads.
+- **Completely optional:** Every gameplay addon still works independently.
 
 ## Installation
 
@@ -48,6 +40,30 @@ No test mode: the panel only shows your real windows, there is nothing to simula
 ## Settings
 
 Open `/psuite settings` or the panel's menu to adjust the control panel. Use `/psuite lock` or `/psuite unlock` for window movement.
+
+## Important notes
+
+> **Installation-test beta available:** [Download the current ZIP from Releases](https://github.com/patpaskoch/PaTiSuite/releases). This is an unverified preview for testing the installation, not a stable release.
+
+> Status: 0.1.0, in development, not yet stable. Partly tested in game ([`INGAME_TESTING.md`](INGAME_TESTING.md)).
+
+## Feature details
+
+- Lists the PaTi addons that are installed and running (Heal, Auras, Aggro, Rota, Group, Lead, Quest, Dungeon, Social,
+  Alerts) in a compact panel: a coloured dot and the short name — green = window shown, grey = hidden. A click on an entry
+  shows or hides that window
+- One button for all windows: "Hide all" while every window is shown, otherwise "Show all"; the control panel
+  itself stays visible
+- Respects each addon's rules: windows with secure buttons (Heal, Auras, Rota, Lead) cannot be shown or hidden in combat —
+  PaTiSuite then says so (e.g. "Heal: not possible in combat") and changes nothing
+- Layout: vertical (one entry per line, button below, default) or horizontal (side by side, the button as the
+  last element of the row; wraps only when the screen is too narrow) — Settings → Display → Layout, at once
+- Remembers what you show or hide here: after `/reload` every window you switched in PaTiSuite is as you left it.
+  Windows you never switched here start as their addon starts them. Restore Defaults forgets this
+- ••• menu: Settings, Lock, Collapse/Expand (only the header stays), Reset position, Hide. Settings: language,
+  scale, lock, panel opacity, layout
+
+No test mode: the panel only shows your real windows, there is nothing to simulate.
 
 ## Supported PaTi addons
 
