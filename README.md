@@ -42,9 +42,14 @@ PaTiSuite is optional and only a control panel. No other addon needs it; every P
 - [PaTiAlerts](https://github.com/patpaskoch/PaTiAlerts) – one window for open problems
 
 ## Installation
-1. Download the release zip (`PaTiSuite-<version>.zip`).
-2. Unpack it and copy the folder `PaTiSuite` into `World of Warcraft/<client>/Interface/AddOns/`.
-3. Start WoW and enable PaTiSuite together with your PaTi addons.
+
+![PaTiSuite – three-step installation guide](assets/installation_en.svg)
+
+1. 📥 **Download** – Open [GitHub Releases](https://github.com/patpaskoch/PaTiSuite/releases) and download the `PaTiSuite-<version>.zip` file under **Assets** (not **Source code (zip)**).
+2. 📂 **Extract & Copy** – Right-click the ZIP, select **Extract All**, then copy the extracted `PaTiSuite` folder into the WoW Forever client's `Interface/AddOns/` folder. No renaming is needed.
+3. ☑️ **Enable in Game** – Start WoW, open the **AddOns** menu at character selection, tick **PaTiSuite**, and click **OK**.
+
+**Optional:** Install the other PaTi addons you want to control; they also work without PaTiSuite.
 
 ## Commands
 `/psuite` or `/patisuite` — alone: show/hide the panel · `showall` · `hideall` · `show` · `hide` · `lock` · `unlock` ·
