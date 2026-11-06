@@ -4,11 +4,13 @@
 
 ## What is PaTiSuite?
 
+> **Installation-test beta available:** [Download the current ZIP from Releases](https://github.com/patpaskoch/PaTiSuite/releases). This is an unverified preview for testing the installation, not a stable release.
+
 A tiny, optional control panel for World of Warcraft: Forever (Interface 16001): one line per installed PaTi addon
 to show or hide its window, plus **Show all** / **Hide all**. It is a remote control, nothing more — every PaTi addon
 works exactly the same without it.
 
-> Status: 0.1.0, in development, not yet released. Partly tested in game ([`INGAME_TESTING.md`](INGAME_TESTING.md)).
+> Status: 0.1.0, in development, not yet stable. Partly tested in game ([`INGAME_TESTING.md`](INGAME_TESTING.md)).
 
 ## Features
 
