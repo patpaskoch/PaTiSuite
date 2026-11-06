@@ -2,6 +2,8 @@
 
 <img src="assets/icon-128.png" width="96" alt="PaTiSuite icon">
 
+## What is PaTiSuite?
+
 A tiny, optional control panel for World of Warcraft: Forever (Interface 16001): one line per installed PaTi addon
 to show or hide its window, plus **Show all** / **Hide all**. It is a remote control, nothing more — every PaTi addon
 works exactly the same without it.
@@ -9,6 +11,7 @@ works exactly the same without it.
 > Status: 0.1.0, in development, not yet released. Partly tested in game ([`INGAME_TESTING.md`](INGAME_TESTING.md)).
 
 ## Features
+
 - Lists the PaTi addons that are installed and running (Heal, Auras, Aggro, Rota, Group, Lead, Quest, Dungeon, Social,
   Alerts) in a compact panel: a coloured dot and the short name — green = window shown, grey = hidden. A click on an entry
   shows or hides that window
@@ -24,6 +27,25 @@ works exactly the same without it.
   scale, lock, panel opacity, layout
 
 No test mode: the panel only shows your real windows, there is nothing to simulate.
+
+## Installation
+
+![PaTiSuite – three-step installation guide](assets/installation_en.svg)
+
+1. 📥 **Download** – Open [GitHub Releases](https://github.com/patpaskoch/PaTiSuite/releases) and download the `PaTiSuite-<version>.zip` file under **Assets** (not **Source code (zip)**).
+2. 📂 **Extract & Copy** – Right-click the ZIP, select **Extract All**, then copy the extracted `PaTiSuite` folder into the WoW Forever client's `Interface/AddOns/` folder. No renaming is needed.
+3. ☑️ **Enable in Game** – Start WoW, open the **AddOns** menu at character selection, tick **PaTiSuite**, and click **OK**.
+
+**Optional:** Install the other PaTi addons you want to control; they also work without PaTiSuite.
+
+## Getting Started
+
+- Type `/psuite` to open or hide the control panel.
+- Click an installed PaTi addon's entry to show or hide its window; the other addons remain independent.
+
+## Settings
+
+Open `/psuite settings` or the panel's menu to adjust the control panel. Use `/psuite lock` or `/psuite unlock` for window movement.
 
 ## Supported PaTi addons
 
@@ -41,25 +63,18 @@ PaTiSuite is optional and only a control panel. No other addon needs it; every P
 - [PaTiSocial](https://github.com/patpaskoch/PaTiSocial) – "Party Social": quick emote and message buttons
 - [PaTiAlerts](https://github.com/patpaskoch/PaTiAlerts) – one window for open problems
 
-## Installation
-
-![PaTiSuite – three-step installation guide](assets/installation_en.svg)
-
-1. 📥 **Download** – Open [GitHub Releases](https://github.com/patpaskoch/PaTiSuite/releases) and download the `PaTiSuite-<version>.zip` file under **Assets** (not **Source code (zip)**).
-2. 📂 **Extract & Copy** – Right-click the ZIP, select **Extract All**, then copy the extracted `PaTiSuite` folder into the WoW Forever client's `Interface/AddOns/` folder. No renaming is needed.
-3. ☑️ **Enable in Game** – Start WoW, open the **AddOns** menu at character selection, tick **PaTiSuite**, and click **OK**.
-
-**Optional:** Install the other PaTi addons you want to control; they also work without PaTiSuite.
-
 ## Commands
+
 `/psuite` or `/patisuite` — alone: show/hide the panel · `showall` · `hideall` · `show` · `hide` · `lock` · `unlock` ·
 `reset` (position) · `settings` · `debug` · `version`
 
 ## How it finds the windows
+
 Every PaTi addon's window registers itself in a small shared list (`PaTiSuiteWindows`: addon name → window frame,
 nothing else). PaTiSuite reads that list; it never reads settings or game data of other addons.
 
 ## Known limitations
+
 - In-game test status: [`INGAME_TESTING.md`](INGAME_TESTING.md) (the single "all" button is not tested yet).
 
 ## Development
@@ -73,4 +88,5 @@ PaTiSuite is free and open source, and it stays that way. If it makes your runs 
 [Issues](https://github.com/patpaskoch/PaTiSuite/issues).
 
 ## License
+
 MIT — see [LICENSE](LICENSE). Copyright (c) 2026 Patrick Koch.
