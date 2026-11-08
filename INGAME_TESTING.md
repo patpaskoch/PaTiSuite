@@ -20,13 +20,18 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
 ## Installation / Laden
 
 - [ ] PT-SUITE-001 Fresh Install aus dem Release-ZIP: genau ein Ordner `PaTiSuite/`, Addon lädt allein
-- [ ] PT-SUITE-002 PaTiSuite erscheint in der AddOn-Liste mit Beschreibung
+- [x] PT-SUITE-002 PaTiSuite erscheint in der AddOn-Liste mit Beschreibung
+  - ✅ VERIFIED 2026-11-08
+  - Owner: steht mit Beschreibung in der AddOn-Liste.
 - [x] PT-SUITE-003 Icon (Zahnrad-Emblem) in der AddOn-Liste korrekt, keine weiße oder fehlende Textur
   - ✅ VERIFIED 2026-10-02
   - Owner: die Icons erscheinen im Spiel in der AddOn-Liste korrekt.
-- [ ] PT-SUITE-004 Login ohne Lua-Fehler
-  - Owner 2026-11-08 (Teilbefund): installiert, „funktionieren soweit tadellos“ — ob beim Login gar keine Lua-Fehlermeldung kam, noch offen.
-- [ ] PT-SUITE-005 `/reload` ohne Lua-Fehler
+- [x] PT-SUITE-004 Login ohne Lua-Fehler
+  - ✅ VERIFIED 2026-11-08
+  - Owner: Login ohne Lua-Fehler.
+- [x] PT-SUITE-005 `/reload` ohne Lua-Fehler
+  - ✅ VERIFIED 2026-11-08
+  - Owner: `/reload` ohne Lua-Fehler.
 
 ## Grundfunktion / Fenster
 
