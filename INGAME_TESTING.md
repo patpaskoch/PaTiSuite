@@ -25,6 +25,7 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
   - ✅ VERIFIED 2026-10-02
   - Owner: die Icons erscheinen im Spiel in der AddOn-Liste korrekt.
 - [ ] PT-SUITE-004 Login ohne Lua-Fehler
+  - Owner 2026-11-08 (Teilbefund): installiert, „funktionieren soweit tadellos“ — ob beim Login gar keine Lua-Fehlermeldung kam, noch offen.
 - [ ] PT-SUITE-005 `/reload` ohne Lua-Fehler
 
 ## Grundfunktion / Fenster
