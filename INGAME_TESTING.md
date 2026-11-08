@@ -37,33 +37,67 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
 
 ## Grundfunktion / Fenster
 
-- [ ] PT-SUITE-010 `/psuite` blendet das Steuerfenster ein und aus
-- [ ] PT-SUITE-011 `/patisuite` funktioniert genauso
-- [ ] PT-SUITE-012 `/psuite show` und `/psuite hide`
-- [ ] PT-SUITE-013 Fenster am Header verschieben (entsperrt)
-- [ ] PT-SUITE-014 Position bleibt nach `/reload`
-- [ ] PT-SUITE-015 Lock/Unlock (••• und `/psuite lock` / `unlock`): gesperrt nicht verschiebbar
-- [ ] PT-SUITE-016 ••• → Position zurücksetzen bzw. `/psuite reset`
-- [ ] PT-SUITE-017 Einstellungen öffnen (`/psuite settings` und •••): Sprache, Größe, Sperren, Deckkraft
-- [ ] PT-SUITE-018 Größe (Scale) wirkt sofort
-- [ ] PT-SUITE-019 Panel-Deckkraft 30–100 %: nur der Hintergrund ändert sich, Header und Texte bleiben lesbar
-- [ ] PT-SUITE-020 Keine Einrast-Einstellung mehr, Fenster frei verschiebbar
+- [x] PT-SUITE-010 `/psuite` blendet das Steuerfenster ein und aus
+  - ✅ VERIFIED 2026-11-08
+  - Owner: auf der Testseite mit „Geht“ bestätigt.
+- [x] PT-SUITE-011 `/patisuite` funktioniert genauso
+  - ✅ VERIFIED 2026-11-08
+  - Owner: auf der Testseite mit „Geht“ bestätigt.
+- [x] PT-SUITE-012 `/psuite show` und `/psuite hide`
+  - ✅ VERIFIED 2026-11-08
+  - Owner: auf der Testseite mit „Geht“ bestätigt.
+- [x] PT-SUITE-013 Fenster am Header verschieben (entsperrt)
+  - ✅ VERIFIED 2026-11-08
+  - Owner: auf der Testseite mit „Geht“ bestätigt.
+- [x] PT-SUITE-014 Position bleibt nach `/reload`
+  - ✅ VERIFIED 2026-11-08
+  - Owner: auf der Testseite mit „Geht“ bestätigt.
+- [x] PT-SUITE-015 Lock/Unlock (••• und `/psuite lock` / `unlock`): gesperrt nicht verschiebbar
+  - ✅ VERIFIED 2026-11-08
+  - Owner: auf der Testseite mit „Geht“ bestätigt.
+- [x] PT-SUITE-016 ••• → Position zurücksetzen bzw. `/psuite reset`
+  - ✅ VERIFIED 2026-11-08
+  - Owner: auf der Testseite mit „Geht“ bestätigt.
+- [x] PT-SUITE-017 Einstellungen öffnen (`/psuite settings` und •••): Sprache, Größe, Sperren, Deckkraft
+  - ✅ VERIFIED 2026-11-08
+  - Owner: auf der Testseite mit „Geht“ bestätigt.
+- [x] PT-SUITE-018 Größe (Scale) wirkt sofort
+  - ✅ VERIFIED 2026-11-08
+  - Owner: auf der Testseite mit „Geht“ bestätigt.
+- [x] PT-SUITE-019 Panel-Deckkraft 30–100 %: nur der Hintergrund ändert sich, Header und Texte bleiben lesbar
+  - ✅ VERIFIED 2026-11-08
+  - Owner: auf der Testseite mit „Geht“ bestätigt.
+- [x] PT-SUITE-020 Keine Einrast-Einstellung mehr, Fenster frei verschiebbar
+  - ✅ VERIFIED 2026-11-08
+  - Owner: auf der Testseite mit „Geht“ bestätigt.
 
 ## Fensterliste
 
-- [ ] PT-SUITE-030 Nur installierte und geladene PaTi-Addons erscheinen (getestet mit einem, zwei und allen zehn)
+- [x] PT-SUITE-030 Nur installierte und geladene PaTi-Addons erscheinen (getestet mit einem, zwei und allen zehn)
+  - ✅ VERIFIED 2026-11-08
+  - Owner: auf der Testseite mit „Geht“ bestätigt.
 - ~~PT-SUITE-031 Sichtbare Fenster werden als „Angezeigt“ erkannt~~
   - RETIRED 2026-10-02 – ausgeschriebener Status entfernt; Status nur noch per Farbpunkt (PT-SUITE-033).
 - ~~PT-SUITE-032 Ausgeblendete Fenster werden als „Ausgeblendet“ erkannt (auch nach `/pt hide`)~~
   - RETIRED 2026-10-02 – ausgeschriebener Status entfernt; Status nur noch per Farbpunkt (PT-SUITE-034).
-- [ ] PT-SUITE-033 Sichtbares Fenster: grüner Punkt, Name hell, kein „Angezeigt“-Text
-- [ ] PT-SUITE-034 Ausgeblendetes Fenster: grauer Punkt, Name grau, kein „Ausgeblendet“-Text — auch wenn es im Addon
+- [x] PT-SUITE-033 Sichtbares Fenster: grüner Punkt, Name hell, kein „Angezeigt“-Text
+  - ✅ VERIFIED 2026-11-08
+  - Owner: auf der Testseite mit „Geht“ bestätigt.
+- [x] PT-SUITE-034 Ausgeblendetes Fenster: grauer Punkt, Name grau, kein „Ausgeblendet“-Text — auch wenn es im Addon
   selbst (z. B. `/pt hide`) ausgeblendet wurde
-- [ ] PT-SUITE-035 Reihenfolge: Heal, Auras, Aggro (früher Tank), Rota, Group, Lead, Quest, Dungeon, Social, Alerts (nur die installierten)
-- [ ] PT-SUITE-036 „Group“ (neue Gruppenübersicht) und „Lead“ (Marker, Ready Check) sind zwei getrennte Einträge;
+  - ✅ VERIFIED 2026-11-08
+  - Owner: auf der Testseite mit „Geht“ bestätigt.
+- [x] PT-SUITE-035 Reihenfolge: Heal, Auras, Aggro (früher Tank), Rota, Group, Lead, Quest, Dungeon, Social, Alerts (nur die installierten)
+  - ✅ VERIFIED 2026-11-08
+  - Owner: auf der Testseite mit „Geht“ bestätigt.
+- [x] PT-SUITE-036 „Group“ (neue Gruppenübersicht) und „Lead“ (Marker, Ready Check) sind zwei getrennte Einträge;
   jeder blendet nur sein eigenes Fenster ein/aus
-- [ ] PT-SUITE-037 Update von der alten Installation: war „Group“ (altes Marker-Addon) in PaTiSuite ausgeblendet, ist
+  - ✅ VERIFIED 2026-11-08
+  - Owner: auf der Testseite mit „Geht“ bestätigt.
+- [x] PT-SUITE-037 Update von der alten Installation: war „Group“ (altes Marker-Addon) in PaTiSuite ausgeblendet, ist
   danach „Lead“ ausgeblendet und das neue „Group“ startet normal sichtbar
+  - ✅ VERIFIED 2026-11-08
+  - Owner: auf der Testseite mit „Geht“ bestätigt.
 
 ## Show / Hide
 
@@ -77,10 +111,16 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
 - ~~PT-SUITE-043 „Alle ausblenden“ blendet alle PaTi-Fenster aus, das Steuerfenster selbst bleibt sichtbar~~
   - ✅ VERIFIED 2026-09-30
   - RETIRED 2026-09-30 – ersetzt durch PT-SUITE-048.
-- [ ] PT-SUITE-044 `/psuite showall` und `/psuite hideall` wie die Buttons
-- [ ] PT-SUITE-045 Im Kampf „Alle ausblenden“ (Button oder `/psuite hideall`): Heal, Auras, Rota, Lead bleiben und werden genannt
+- [x] PT-SUITE-044 `/psuite showall` und `/psuite hideall` wie die Buttons
+  - ✅ VERIFIED 2026-11-08
+  - Owner: auf der Testseite mit „Geht“ bestätigt.
+- [x] PT-SUITE-045 Im Kampf „Alle ausblenden“ (Button oder `/psuite hideall`): Heal, Auras, Rota, Lead bleiben und werden genannt
   („Heal: im Kampf nicht möglich“), Aggro/Quest/Dungeon/Alerts werden ausgeblendet
-- [ ] PT-SUITE-046 Im Kampf Klick auf die Heal-, Auras-, Rota- oder Lead-Zeile ändert nichts und nennt den Grund (Group geht auch im Kampf)
+  - ✅ VERIFIED 2026-11-08
+  - Owner: auf der Testseite mit „Geht“ bestätigt.
+- [x] PT-SUITE-046 Im Kampf Klick auf die Heal-, Auras-, Rota- oder Lead-Zeile ändert nichts und nennt den Grund (Group geht auch im Kampf)
+  - ✅ VERIFIED 2026-11-08
+  - Owner: auf der Testseite mit „Geht“ bestätigt.
 - [ ] PT-SUITE-047 Ohne PaTiSuite verhalten sich alle anderen Addons unverändert
 - [ ] PT-SUITE-048 Ein Button für alle: sind alle Fenster sichtbar, heißt er „Alle ausblenden“ und blendet alle aus
   (das Steuerfenster bleibt); ist mindestens eines ausgeblendet, heißt er „Alle einblenden“ und blendet alle ein;
