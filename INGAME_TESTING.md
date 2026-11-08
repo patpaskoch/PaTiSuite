@@ -19,7 +19,9 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
 
 ## Installation / Laden
 
-- [ ] PT-SUITE-001 Fresh Install aus dem Release-ZIP: genau ein Ordner `PaTiSuite/`, Addon lädt allein
+- [x] PT-SUITE-001 Fresh Install aus dem Release-ZIP: genau ein Ordner `PaTiSuite/`, Addon lädt allein
+  - ✅ VERIFIED 2026-11-08
+  - Owner: installiert, lädt und funktioniert, kein Fehler.
 - [x] PT-SUITE-002 PaTiSuite erscheint in der AddOn-Liste mit Beschreibung
   - ✅ VERIFIED 2026-11-08
   - Owner: steht mit Beschreibung in der AddOn-Liste.
