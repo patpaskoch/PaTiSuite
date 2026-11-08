@@ -265,7 +265,9 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
 ## Combined
 
 - [ ] PT-SUITE-090 Zusammen mit allen PaTi-Addons geladen: kein Lua-Fehler
-- [ ] PT-SUITE-091 Keine Slash-Command-Kollision: `/psuite` antwortet nur PaTiSuite
+- [x] PT-SUITE-091 Keine Slash-Command-Kollision: `/psuite` antwortet nur PaTiSuite
+  - ✅ VERIFIED 2026-11-08
+  - Owner: /patitest 2× grün in-game (vor und nach /reload, 42 ok, 0 Fehler; 7 PaTi-Addons installiert)
 - [ ] PT-SUITE-092 Eigene Einstellungen speichern nur PaTiSuite-Werte
 
 ## Entfernt
