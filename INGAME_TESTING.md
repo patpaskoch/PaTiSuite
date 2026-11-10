@@ -166,12 +166,14 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
 - [ ] PT-SUITE-153 ••• ist ruhig, beim Hover voll sichtbar und bedienbar; TEST-Badge im Test Mode gut sichtbar
 - [ ] PT-SUITE-154 Im Kampf am Header verschieben: Aggro, Group, Quest, Dungeon, Social, Alerts und Suite lassen sich ziehen,
   Heal, Auras, Rota und Lead nicht (Secure-Buttons); kein Lua-Fehler, kein `ADDON_ACTION_BLOCKED`; gesperrte Fenster nie
-- [ ] PT-SUITE-904 Sperren/Entsperren (••• Menü, `/… lock` / `unlock`, Einstellungen): im Chat „<Addon>: Fenster
+- [x] PT-SUITE-904 Sperren/Entsperren (••• Menü, `/… lock` / `unlock`, Einstellungen): im Chat „<Addon>: Fenster
   gesperrt.“ bzw. „Fenster entsperrt: am Kopf verschieben.“ — genau eine Zeile pro Wechsel, nichts beim Login oder
   `/reload` (gilt für alle PaTi-Addons)
   - Owner 2026-11-07: beim Sperren/Entsperren soll eine Nachricht im Chat kommen
   - 🔧 FIX IMPLEMENTED 2026-11-07
   - MANUAL RETEST REQUIRED
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
 
 ## Themes (alle Fenster)
 
