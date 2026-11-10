@@ -246,7 +246,9 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
 ## SavedVariables
 
 - [ ] PT-SUITE-060 Einstellungen (Sprache, Größe, Sperre, Deckkraft) bleiben nach `/reload`
-- [ ] PT-SUITE-061 Einstellungen bleiben nach Relog
+- [x] PT-SUITE-061 Einstellungen bleiben nach Relog
+  - ✅ VERIFIED 2026-11-10
+  - Owner: 5 Spielsitzungen mit wiederholtem Einloggen, keine Auffälligkeiten
 - [ ] PT-SUITE-062 „Standard wiederherstellen“ setzt die Einstellungen zurück
 
 ## Sprachen
