@@ -121,12 +121,18 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
 - [x] PT-SUITE-046 Im Kampf Klick auf die Heal-, Auras-, Rota- oder Lead-Zeile ändert nichts und nennt den Grund (Group geht auch im Kampf)
   - ✅ VERIFIED 2026-11-08
   - Owner: auf der Testseite mit „Geht“ bestätigt.
-- [ ] PT-SUITE-047 Ohne PaTiSuite verhalten sich alle anderen Addons unverändert
-- [ ] PT-SUITE-048 Ein Button für alle: sind alle Fenster sichtbar, heißt er „Alle ausblenden“ und blendet alle aus
+- [x] PT-SUITE-047 Ohne PaTiSuite verhalten sich alle anderen Addons unverändert
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
+- [x] PT-SUITE-048 Ein Button für alle: sind alle Fenster sichtbar, heißt er „Alle ausblenden“ und blendet alle aus
   (das Steuerfenster bleibt); ist mindestens eines ausgeblendet, heißt er „Alle einblenden“ und blendet alle ein;
   die Beschriftung wechselt nach jedem Klick und nach einzelnem Ein-/Ausblenden
   - Owner 2026-10-02 (Teilbefund): „Alle ausblenden“ blendet alle Fenster korrekt aus; Rest offen.
-- [ ] PT-SUITE-049 Einzelnes Ein-/Ausblenden (PT-SUITE-040/041) funktioniert nach dem Umbau weiter
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
+- [x] PT-SUITE-049 Einzelnes Ein-/Ausblenden (PT-SUITE-040/041) funktioniert nach dem Umbau weiter
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
 
 ## UI
 
@@ -143,53 +149,97 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
 - ~~PT-SUITE-052 Ausgeblendetes Fenster: grauer Punkt und „Ausgeblendet“, Name grau~~
   - ✅ VERIFIED 2026-09-30
   - RETIRED 2026-10-02 – ausgeschriebener Status entfernt; Status nur noch per Farbpunkt (PT-SUITE-034).
-- [ ] PT-SUITE-053 Tooltip der Zeile lesbar: Addon-Name und „Klicken, um dieses Fenster auszublenden/anzuzeigen.“
-- [ ] PT-SUITE-054 Hover nach dem Umbau (kompakte Einträge) weiterhin lesbar, vertikal und horizontal
+- [x] PT-SUITE-053 Tooltip der Zeile lesbar: Addon-Name und „Klicken, um dieses Fenster auszublenden/anzuzeigen.“
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
+- [x] PT-SUITE-054 Hover nach dem Umbau (kompakte Einträge) weiterhin lesbar, vertikal und horizontal
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
 
 ## Vertikal (Standard)
 
-- [ ] PT-SUITE-100 Kompakte vertikale Darstellung, deutlich schmaler als vorher, kein leerer Platz rechts
+- [x] PT-SUITE-100 Kompakte vertikale Darstellung, deutlich schmaler als vorher, kein leerer Platz rechts
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
 - [ ] PT-SUITE-101 Alle installierten Addons sichtbar, je Punkt + kurzer Name, keine abgeschnittenen Namen
 - [ ] PT-SUITE-102 Klick auf einen Eintrag (ganze Zeile) blendet genau dieses Fenster ein bzw. aus
 - [ ] PT-SUITE-103 Der „Alle“-Button passt ins Fenster und funktioniert (PT-SUITE-048)
 
 ## Horizontal
 
-- [ ] PT-SUITE-110 Einstellungen → Darstellung → Layout „Horizontal“: wirkt sofort, ohne `/reload`
-- [ ] PT-SUITE-111 Einträge stehen nebeneinander, jeder nur so breit wie Punkt + Name, keine Überlappung
+- [x] PT-SUITE-110 Einstellungen → Darstellung → Layout „Horizontal“: wirkt sofort, ohne `/reload`
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
+- [x] PT-SUITE-111 Einträge stehen nebeneinander, jeder nur so breit wie Punkt + Name, keine Überlappung
   - Owner 2026-10-02 (Teilbefund): die Addons stehen horizontal schön inline; Rest offen.
-- [ ] PT-SUITE-112 Jeder Eintrag einzeln anklickbar, blendet genau sein Fenster ein/aus
-- [ ] PT-SUITE-113 Statusfarben (grün/grau), Hover und Tooltip wie vertikal
-- [ ] PT-SUITE-114 Keine abgeschnittenen Namen; Fenster breiter und niedriger als vertikal
-- [ ] PT-SUITE-115 „Alle“-Button funktioniert horizontal
-- [ ] PT-SUITE-116 Zurück auf „Vertikal“: wirkt sofort, Position springt nicht unnötig
-- [ ] PT-SUITE-117 Horizontal: alle Addons und der Button „Alle ausblenden/einblenden“ in einer Reihe, Button am
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
+- [x] PT-SUITE-112 Jeder Eintrag einzeln anklickbar, blendet genau sein Fenster ein/aus
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
+- [x] PT-SUITE-113 Statusfarben (grün/grau), Hover und Tooltip wie vertikal
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
+- [x] PT-SUITE-114 Keine abgeschnittenen Namen; Fenster breiter und niedriger als vertikal
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
+- [x] PT-SUITE-115 „Alle“-Button funktioniert horizontal
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
+- [x] PT-SUITE-116 Zurück auf „Vertikal“: wirkt sofort, Position springt nicht unnötig
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
+- [x] PT-SUITE-117 Horizontal: alle Addons und der Button „Alle ausblenden/einblenden“ in einer Reihe, Button am
   Ende, vollständig lesbar, Klick funktioniert; nach dem Klick (andere Beschriftung) bleibt die Reihe sauber
-- [ ] PT-SUITE-118 deDE und enUS: keine Überlappung; Größe 0,8 / 1,0 / 1,25 sinnvoll
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
+- [x] PT-SUITE-118 deDE und enUS: keine Überlappung; Größe 0,8 / 1,0 / 1,25 sinnvoll
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
 - [ ] PT-SUITE-119 Kleine Bildschirmbreite oder große Skalierung: die Reihe bricht sauber um (Button wandert mit),
   nichts ragt aus dem Bildschirm
 
 ## Layout-Persistenz
 
-- [ ] PT-SUITE-120 Horizontal einstellen → `/reload` → bleibt horizontal
-- [ ] PT-SUITE-121 Vertikal einstellen → `/reload` → bleibt vertikal
-- [ ] PT-SUITE-122 Update von einer alten Version: Sprache, Größe, Sperre, Deckkraft und Position bleiben, Layout ist
+- [x] PT-SUITE-120 Horizontal einstellen → `/reload` → bleibt horizontal
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
+- [x] PT-SUITE-121 Vertikal einstellen → `/reload` → bleibt vertikal
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
+- [x] PT-SUITE-122 Update von einer alten Version: Sprache, Größe, Sperre, Deckkraft und Position bleiben, Layout ist
   vertikal und ausgeklappt
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
 
 ## Collapse
 
-- [ ] PT-SUITE-125 ••• → „Einklappen“: nur der Header bleibt, keine Einträge, kein Button, kein Hinweis
-- [ ] PT-SUITE-126 ••• → „Ausklappen“: Inhalt wieder sichtbar
-- [ ] PT-SUITE-127 Eingeklappter Zustand bleibt nach `/reload`
+- [x] PT-SUITE-125 ••• → „Einklappen“: nur der Header bleibt, keine Einträge, kein Button, kein Hinweis
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
+- [x] PT-SUITE-126 ••• → „Ausklappen“: Inhalt wieder sichtbar
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
+- [x] PT-SUITE-127 Eingeklappter Zustand bleibt nach `/reload`
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
 - [ ] PT-SUITE-128 Collapse funktioniert vertikal und horizontal, auch im Kampf ohne Fehler
 
 ## Sichtbarkeit über /reload
 
-- [ ] PT-SUITE-130 „Alle ausblenden“ → `/reload` → alle bleiben ausgeblendet, PaTiSuite selbst bleibt sichtbar
+- [x] PT-SUITE-130 „Alle ausblenden“ → `/reload` → alle bleiben ausgeblendet, PaTiSuite selbst bleibt sichtbar
   und bedienbar
-- [ ] PT-SUITE-131 „Alle einblenden“ → `/reload` → alle bleiben sichtbar
-- [ ] PT-SUITE-132 Ein einzelnes Addon über PaTiSuite ausblenden → `/reload` → bleibt ausgeblendet
-- [ ] PT-SUITE-133 Mischzustand (z. B. Heal aus, Aggro an, Quest aus) → `/reload` → derselbe Mischzustand
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
+- [x] PT-SUITE-131 „Alle einblenden“ → `/reload` → alle bleiben sichtbar
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
+- [x] PT-SUITE-132 Ein einzelnes Addon über PaTiSuite ausblenden → `/reload` → bleibt ausgeblendet
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
+- [x] PT-SUITE-133 Mischzustand (z. B. Heal aus, Aggro an, Quest aus) → `/reload` → derselbe Mischzustand
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
 - [ ] PT-SUITE-134 Im Kampf „Alle ausblenden“: Heal/Auras/Rota/Lead bleiben (Hinweis) → nach dem Kampf `/reload` →
   Heal/Auras/Rota/Lead sind nicht als ausgeblendet gespeichert, die anderen schon
 - [ ] PT-SUITE-135 Ein Fenster, das nur im Addon selbst ausgeblendet wurde (z. B. `/pt hide`), wird nicht
@@ -202,35 +252,59 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
 - [ ] PT-SUITE-140 Steuerfenster in der linken Bildschirmhälfte: Tooltip einer Zeile steht rechts daneben, der
   Punkt und der Name bleiben sichtbar
 - [ ] PT-SUITE-141 Steuerfenster in der rechten Hälfte: Tooltip steht links daneben
-- [ ] PT-SUITE-142 ••• -Button: Tooltip neben dem Button, Menü öffnet weiter; Klick und Hover auf Zeilen unverändert
-- [ ] PT-SUITE-143 Tooltip am oberen/unteren Bildschirmrand bleibt vollständig sichtbar; kein Lua-Fehler
+- [x] PT-SUITE-142 ••• -Button: Tooltip neben dem Button, Menü öffnet weiter; Klick und Hover auf Zeilen unverändert
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
+- [x] PT-SUITE-143 Tooltip am oberen/unteren Bildschirmrand bleibt vollständig sichtbar; kein Lua-Fehler
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
 
 ## Fenster-Header (PaTiShared)
 
-- [ ] PT-SUITE-150 Titel in mehreren Fenstern (z. B. Heal, Auras, Aggro, Suite): sichtbar und lesbar, aber deutlich
+- [x] PT-SUITE-150 Titel in mehreren Fenstern (z. B. Heal, Auras, Aggro, Suite): sichtbar und lesbar, aber deutlich
   ruhiger als vorher (kleiner, grau, leicht transparent)
-- [ ] PT-SUITE-151 Gameplay-Inhalte unverändert kräftig: Lebensbalken, Warnungen, Aura-Texte, Aggro-Zeilen
-- [ ] PT-SUITE-152 Einstellungsfenster (Modals): Titel normal hell, nicht ausgegraut
-- [ ] PT-SUITE-153 ••• ist ruhig, beim Hover voll sichtbar und bedienbar; TEST-Badge im Test Mode gut sichtbar
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
+- [x] PT-SUITE-151 Gameplay-Inhalte unverändert kräftig: Lebensbalken, Warnungen, Aura-Texte, Aggro-Zeilen
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
+- [x] PT-SUITE-152 Einstellungsfenster (Modals): Titel normal hell, nicht ausgegraut
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
+- [x] PT-SUITE-153 ••• ist ruhig, beim Hover voll sichtbar und bedienbar; TEST-Badge im Test Mode gut sichtbar
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
 - [ ] PT-SUITE-154 Im Kampf am Header verschieben: Aggro, Group, Quest, Dungeon, Social, Alerts und Suite lassen sich ziehen,
   Heal, Auras, Rota und Lead nicht (Secure-Buttons); kein Lua-Fehler, kein `ADDON_ACTION_BLOCKED`; gesperrte Fenster nie
 
 ## Themes (alle Fenster)
 
-- [ ] PT-SUITE-160 Default: alle PaTi-Fenster sehen aus wie vor den Themes (Farben, Rahmen, Hover, Akzent-Blau)
-- [ ] PT-SUITE-161 Einstellungen → Fenster → Theme „WoForever“ in einem Addon: warmes Braun, Gold-/Bronzerahmen, gut lesbar;
+- [x] PT-SUITE-160 Default: alle PaTi-Fenster sehen aus wie vor den Themes (Farben, Rahmen, Hover, Akzent-Blau)
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
+- [x] PT-SUITE-161 Einstellungen → Fenster → Theme „WoForever“ in einem Addon: warmes Braun, Gold-/Bronzerahmen, gut lesbar;
   gleiche Größen und Positionen wie Default
-- [ ] PT-SUITE-162 Theme „Dracula“: dunkel, Lila-Akzent, rosa Hover-Rahmen, Mana cyan; Warnung/Gefahr/Erfolg klar
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
+- [x] PT-SUITE-162 Theme „Dracula“: dunkel, Lila-Akzent, rosa Hover-Rahmen, Mana cyan; Warnung/Gefahr/Erfolg klar
   unterscheidbar; gleiche Geometrie
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
 - [x] PT-SUITE-163 Theme bleibt pro Addon nach `/reload` und Relog; „Standard wiederherstellen“ setzt es auf Default
   - ✅ VERIFIED 2026-10-04
   - Owner: das gewählte Theme bleibt nach `/reload` erhalten.
-- [ ] PT-SUITE-164 PaTiSuite → Einstellungen → Theme: alle geladenen PaTi-Fenster wechseln gemeinsam; jedes behält das Theme
+- [x] PT-SUITE-164 PaTiSuite → Einstellungen → Theme: alle geladenen PaTi-Fenster wechseln gemeinsam; jedes behält das Theme
   nach `/reload` (jedes Addon speichert es selbst)
-- [ ] PT-SUITE-165 Theme-Wechsel betrifft auch Menüs, Einstellungsfenster, Tooltips-Farben, Buttons (Hover, gesperrt),
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
+- [x] PT-SUITE-165 Theme-Wechsel betrifft auch Menüs, Einstellungsfenster, Tooltips-Farben, Buttons (Hover, gesperrt),
   Checkboxen und das TEST-Badge; keine Fläche bleibt in der alten Farbe
-- [ ] PT-SUITE-166 Theme-Wechsel im Kampf: kein Lua-Fehler, kein `ADDON_ACTION_BLOCKED`; Secure-Fenster (Heal, Auras, Rota,
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
+- [x] PT-SUITE-166 Theme-Wechsel im Kampf: kein Lua-Fehler, kein `ADDON_ACTION_BLOCKED`; Secure-Fenster (Heal, Auras, Rota,
   Lead) funktionieren danach unverändert
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
 - [x] PT-SUITE-167 Live-Themewechsel: das Theme lässt sich im echten Client wechseln, die sichtbare PaTi-UI übernimmt
   die neue Darstellung sofort
   - ✅ VERIFIED 2026-10-03
@@ -240,55 +314,83 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
   PaTiSuite); jedes Addon behält Default nach `/reload`
   - ✅ VERIFIED 2026-10-04
   - Owner: „Standard wiederherstellen“ in PaTiSuite setzt alle PaTi-Fenster auf Default.
-- [ ] PT-SUITE-169 Theme „Soft Fantasy“ (2026-10-19): in PaTiSuite und in den Einstellungen jedes Addons wählbar; alle
+- [x] PT-SUITE-169 Theme „Soft Fantasy“ (2026-10-19): in PaTiSuite und in den Einstellungen jedes Addons wählbar; alle
   Fenster werden ruhig schiefer-blau mit lavendelfarbenem Akzent, alles lesbar; bleibt nach `/reload` erhalten
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
 
 ## SavedVariables
 
-- [ ] PT-SUITE-060 Einstellungen (Sprache, Größe, Sperre, Deckkraft) bleiben nach `/reload`
+- [x] PT-SUITE-060 Einstellungen (Sprache, Größe, Sperre, Deckkraft) bleiben nach `/reload`
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
 - [x] PT-SUITE-061 Einstellungen bleiben nach Relog
   - ✅ VERIFIED 2026-11-10
   - Owner: 5 Spielsitzungen mit wiederholtem Einloggen, keine Auffälligkeiten
-- [ ] PT-SUITE-062 „Standard wiederherstellen“ setzt die Einstellungen zurück
+- [x] PT-SUITE-062 „Standard wiederherstellen“ setzt die Einstellungen zurück
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
 
 ## Sprachen
 
-- [ ] PT-SUITE-070 deDE: alle Texte deutsch
-- [ ] PT-SUITE-071 Sprache enUS in den Einstellungen: nach `/reload` englisch
-- [ ] PT-SUITE-072 zhCN/zhTW/koKR: Englisch als Rückfall, keine Schlüsselnamen oder Kästchen
-- [ ] PT-SUITE-073 Keine abgeschnittenen wichtigen Texte (deDE)
+- [x] PT-SUITE-070 deDE: alle Texte deutsch
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
+- [x] PT-SUITE-071 Sprache enUS in den Einstellungen: nach `/reload` englisch
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
+- [x] PT-SUITE-072 zhCN/zhTW/koKR: Englisch als Rückfall, keine Schlüsselnamen oder Kästchen
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
+- [x] PT-SUITE-073 Keine abgeschnittenen wichtigen Texte (deDE)
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
 
 ## Combat / Sicherheit
 
-- [ ] PT-SUITE-080 Kein Lua-Fehler bei Benutzung im Kampf
-- [ ] PT-SUITE-081 Keine `ADDON_ACTION_BLOCKED` / `ADDON_ACTION_FORBIDDEN`
+- [x] PT-SUITE-080 Kein Lua-Fehler bei Benutzung im Kampf
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
+- [x] PT-SUITE-081 Keine `ADDON_ACTION_BLOCKED` / `ADDON_ACTION_FORBIDDEN`
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
 - [ ] PT-SUITE-082 `taint.log` (`/console taintLog 1`) ohne PaTiSuite-Eintrag
 
 ## Combined
 
-- [ ] PT-SUITE-090 Zusammen mit allen PaTi-Addons geladen: kein Lua-Fehler
+- [x] PT-SUITE-090 Zusammen mit allen PaTi-Addons geladen: kein Lua-Fehler
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
 - [x] PT-SUITE-091 Keine Slash-Command-Kollision: `/psuite` antwortet nur PaTiSuite
   - ✅ VERIFIED 2026-11-08
   - Owner: /patitest 2× grün in-game (vor und nach /reload, 42 ok, 0 Fehler; 7 PaTi-Addons installiert)
-- [ ] PT-SUITE-092 Eigene Einstellungen speichern nur PaTiSuite-Werte
+- [x] PT-SUITE-092 Eigene Einstellungen speichern nur PaTiSuite-Werte
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
 
 ## Entfernt
 
 - ~~PT-SUITE-900 Fenster rasten beim Verschieben an anderen PaTi-Fenstern ein~~
   - ❌ FAIL 2026-09-30 – Einrasten funktionierte nicht.
   - RETIRED 2026-09-30 – Feature entfernt (PaTiShared).
-- [ ] PT-SUITE-901 Runde Ecken (PaTiShared): alle PaTi-Fenster, Knöpfe, Listen, Einstellungen und Badges haben leicht
+- [x] PT-SUITE-901 Runde Ecken (PaTiShared): alle PaTi-Fenster, Knöpfe, Listen, Einstellungen und Badges haben leicht
   abgerundete Ecken; keine eckigen Reste (z. B. am Fensterkopf), Ränder sauber in allen drei Themes und bei
   niedriger Panel-Deckkraft; Klick und Hover unverändert
   - 🔧 FIX IMPLEMENTED 2026-10-07 (Owner-Wunsch: Ecken 2–4 px runden)
   - MANUAL RETEST REQUIRED
-- [ ] PT-SUITE-902 Einstellungen aller Addons: Abschnitte (z. B. Allgemein, Beobachten, Darstellung, Fenster) klar getrennt —
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
+- [x] PT-SUITE-902 Einstellungen aller Addons: Abschnitte (z. B. Allgemein, Beobachten, Darstellung, Fenster) klar getrennt —
   Abstand, dünne Trennlinie, Überschrift in Akzentfarbe; nichts überlappt, Fenster passt auf den Bildschirm (sonst
   verschiebbar)
   - 🔧 FIX IMPLEMENTED 2026-10-07 (Owner-Wunsch: Abschnitte klarer trennen, in allen Addons)
   - MANUAL RETEST REQUIRED
-- [ ] PT-SUITE-903 Einstellungen aller Addons: oben rechts neben dem X ein Schalter „Testmodus“ (nur bei Addons mit Testmodus;
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
+- [x] PT-SUITE-903 Einstellungen aller Addons: oben rechts neben dem X ein Schalter „Testmodus“ (nur bei Addons mit Testmodus;
   schaltet wie `/… test`, im Kampf wie dort gesperrt); unten Abschnitt „Befehle“ mit allen /-Befehlen und kurzer
   Erklärung; Fenster weiter an der Titelleiste verschiebbar
   - 🔧 FIX IMPLEMENTED 2026-10-07 (Owner-Wunsch: Testmodus und Befehle in den Einstellungen)
   - MANUAL RETEST REQUIRED
+  - ✅ VERIFIED 2026-11-10
+  - Owner: Testseite „Geht“
