@@ -161,9 +161,15 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
 - [x] PT-SUITE-100 Kompakte vertikale Darstellung, deutlich schmaler als vorher, kein leerer Platz rechts
   - ✅ VERIFIED 2026-11-10
   - Owner: Testseite „Geht“
-- [ ] PT-SUITE-101 Alle installierten Addons sichtbar, je Punkt + kurzer Name, keine abgeschnittenen Namen
-- [ ] PT-SUITE-102 Klick auf einen Eintrag (ganze Zeile) blendet genau dieses Fenster ein bzw. aus
-- [ ] PT-SUITE-103 Der „Alle“-Button passt ins Fenster und funktioniert (PT-SUITE-048)
+- [x] PT-SUITE-101 Alle installierten Addons sichtbar, je Punkt + kurzer Name, keine abgeschnittenen Namen
+  - ✅ VERIFIED 2026-11-15
+  - Owner: auf der Ingame-Testseite als „Geht“ abgehakt.
+- [x] PT-SUITE-102 Klick auf einen Eintrag (ganze Zeile) blendet genau dieses Fenster ein bzw. aus
+  - ✅ VERIFIED 2026-11-15
+  - Owner: auf der Ingame-Testseite als „Geht“ abgehakt.
+- [x] PT-SUITE-103 Der „Alle“-Button passt ins Fenster und funktioniert (PT-SUITE-048)
+  - ✅ VERIFIED 2026-11-15
+  - Owner: auf der Ingame-Testseite als „Geht“ abgehakt.
 
 ## Horizontal
 
@@ -223,7 +229,9 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
 - [x] PT-SUITE-127 Eingeklappter Zustand bleibt nach `/reload`
   - ✅ VERIFIED 2026-11-10
   - Owner: Testseite „Geht“
-- [ ] PT-SUITE-128 Collapse funktioniert vertikal und horizontal, auch im Kampf ohne Fehler
+- [x] PT-SUITE-128 Collapse funktioniert vertikal und horizontal, auch im Kampf ohne Fehler
+  - ✅ VERIFIED 2026-11-15
+  - Owner: auf der Ingame-Testseite als „Geht“ abgehakt.
 
 ## Sichtbarkeit über /reload
 
@@ -240,18 +248,28 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
 - [x] PT-SUITE-133 Mischzustand (z. B. Heal aus, Aggro an, Quest aus) → `/reload` → derselbe Mischzustand
   - ✅ VERIFIED 2026-11-10
   - Owner: Testseite „Geht“
-- [ ] PT-SUITE-134 Im Kampf „Alle ausblenden“: Heal/Auras/Rota/Lead bleiben (Hinweis) → nach dem Kampf `/reload` →
+- [x] PT-SUITE-134 Im Kampf „Alle ausblenden“: Heal/Auras/Rota/Lead bleiben (Hinweis) → nach dem Kampf `/reload` →
   Heal/Auras/Rota/Lead sind nicht als ausgeblendet gespeichert, die anderen schon
-- [ ] PT-SUITE-135 Ein Fenster, das nur im Addon selbst ausgeblendet wurde (z. B. `/pt hide`), wird nicht
+  - ✅ VERIFIED 2026-11-15
+  - Owner: auf der Ingame-Testseite als „Geht“ abgehakt.
+- [x] PT-SUITE-135 Ein Fenster, das nur im Addon selbst ausgeblendet wurde (z. B. `/pt hide`), wird nicht
   gespeichert: nach `/reload` startet es wie das Addon es startet
-- [ ] PT-SUITE-136 „Standard wiederherstellen“ vergisst die gespeicherte Sichtbarkeit: nach `/reload` starten alle
+  - ✅ VERIFIED 2026-11-15
+  - Owner: auf der Ingame-Testseite als „Geht“ abgehakt.
+- [x] PT-SUITE-136 „Standard wiederherstellen“ vergisst die gespeicherte Sichtbarkeit: nach `/reload` starten alle
   Fenster wieder wie ihr Addon sie startet
+  - ✅ VERIFIED 2026-11-15
+  - Owner: auf der Ingame-Testseite als „Geht“ abgehakt.
 
 ## Tooltips (PaTiShared)
 
-- [ ] PT-SUITE-140 Steuerfenster in der linken Bildschirmhälfte: Tooltip einer Zeile steht rechts daneben, der
+- [x] PT-SUITE-140 Steuerfenster in der linken Bildschirmhälfte: Tooltip einer Zeile steht rechts daneben, der
   Punkt und der Name bleiben sichtbar
-- [ ] PT-SUITE-141 Steuerfenster in der rechten Hälfte: Tooltip steht links daneben
+  - ✅ VERIFIED 2026-11-15
+  - Owner: auf der Ingame-Testseite als „Geht“ abgehakt.
+- [x] PT-SUITE-141 Steuerfenster in der rechten Hälfte: Tooltip steht links daneben
+  - ✅ VERIFIED 2026-11-15
+  - Owner: auf der Ingame-Testseite als „Geht“ abgehakt.
 - [x] PT-SUITE-142 ••• -Button: Tooltip neben dem Button, Menü öffnet weiter; Klick und Hover auf Zeilen unverändert
   - ✅ VERIFIED 2026-11-10
   - Owner: Testseite „Geht“
@@ -274,8 +292,10 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
 - [x] PT-SUITE-153 ••• ist ruhig, beim Hover voll sichtbar und bedienbar; TEST-Badge im Test Mode gut sichtbar
   - ✅ VERIFIED 2026-11-10
   - Owner: Testseite „Geht“
-- [ ] PT-SUITE-154 Im Kampf am Header verschieben: Aggro, Group, Quest, Dungeon, Social, Alerts und Suite lassen sich ziehen,
+- [x] PT-SUITE-154 Im Kampf am Header verschieben: Aggro, Group, Quest, Dungeon, Social, Alerts und Suite lassen sich ziehen,
   Heal, Auras, Rota und Lead nicht (Secure-Buttons); kein Lua-Fehler, kein `ADDON_ACTION_BLOCKED`; gesperrte Fenster nie
+  - ✅ VERIFIED 2026-11-15
+  - Owner: auf der Ingame-Testseite als „Geht“ abgehakt.
 
 ## Themes (alle Fenster)
 
