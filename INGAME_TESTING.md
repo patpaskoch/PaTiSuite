@@ -101,9 +101,15 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
 ## Vertikal (Standard)
 
 - [ ] PT-SUITE-100 Kompakte vertikale Darstellung, deutlich schmaler als vorher, kein leerer Platz rechts
-- [ ] PT-SUITE-101 Alle installierten Addons sichtbar, je Punkt + kurzer Name, keine abgeschnittenen Namen
-- [ ] PT-SUITE-102 Klick auf einen Eintrag (ganze Zeile) blendet genau dieses Fenster ein bzw. aus
-- [ ] PT-SUITE-103 Der „Alle“-Button passt ins Fenster und funktioniert (PT-SUITE-048)
+- [x] PT-SUITE-101 Alle installierten Addons sichtbar, je Punkt + kurzer Name, keine abgeschnittenen Namen
+  - ✅ VERIFIED 2026-11-15
+  - Owner: auf der Ingame-Test-Seite „Geht“ (2026-11-15), nachgetragen 2026-11-18.
+- [x] PT-SUITE-102 Klick auf einen Eintrag (ganze Zeile) blendet genau dieses Fenster ein bzw. aus
+  - ✅ VERIFIED 2026-11-15
+  - Owner: auf der Ingame-Test-Seite „Geht“ (2026-11-15), nachgetragen 2026-11-18.
+- [x] PT-SUITE-103 Der „Alle“-Button passt ins Fenster und funktioniert (PT-SUITE-048)
+  - ✅ VERIFIED 2026-11-15
+  - Owner: auf der Ingame-Test-Seite „Geht“ (2026-11-15), nachgetragen 2026-11-18.
 
 ## Horizontal
 
@@ -133,7 +139,9 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
 - [ ] PT-SUITE-125 ••• → „Einklappen“: nur der Header bleibt, keine Einträge, kein Button, kein Hinweis
 - [ ] PT-SUITE-126 ••• → „Ausklappen“: Inhalt wieder sichtbar
 - [ ] PT-SUITE-127 Eingeklappter Zustand bleibt nach `/reload`
-- [ ] PT-SUITE-128 Collapse funktioniert vertikal und horizontal, auch im Kampf ohne Fehler
+- [x] PT-SUITE-128 Collapse funktioniert vertikal und horizontal, auch im Kampf ohne Fehler
+  - ✅ VERIFIED 2026-11-15
+  - Owner: auf der Ingame-Test-Seite „Geht“ (2026-11-15), nachgetragen 2026-11-18.
 
 ## Sichtbarkeit über /reload
 
@@ -142,18 +150,28 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
 - [ ] PT-SUITE-131 „Alle einblenden“ → `/reload` → alle bleiben sichtbar
 - [ ] PT-SUITE-132 Ein einzelnes Addon über PaTiSuite ausblenden → `/reload` → bleibt ausgeblendet
 - [ ] PT-SUITE-133 Mischzustand (z. B. Heal aus, Aggro an, Quest aus) → `/reload` → derselbe Mischzustand
-- [ ] PT-SUITE-134 Im Kampf „Alle ausblenden“: Heal/Auras/Rota/Lead bleiben (Hinweis) → nach dem Kampf `/reload` →
+- [x] PT-SUITE-134 Im Kampf „Alle ausblenden“: Heal/Auras/Rota/Lead bleiben (Hinweis) → nach dem Kampf `/reload` →
   Heal/Auras/Rota/Lead sind nicht als ausgeblendet gespeichert, die anderen schon
-- [ ] PT-SUITE-135 Ein Fenster, das nur im Addon selbst ausgeblendet wurde (z. B. `/pt hide`), wird nicht
+  - ✅ VERIFIED 2026-11-15
+  - Owner: auf der Ingame-Test-Seite „Geht“ (2026-11-15), nachgetragen 2026-11-18.
+- [x] PT-SUITE-135 Ein Fenster, das nur im Addon selbst ausgeblendet wurde (z. B. `/pt hide`), wird nicht
   gespeichert: nach `/reload` startet es wie das Addon es startet
-- [ ] PT-SUITE-136 „Standard wiederherstellen“ vergisst die gespeicherte Sichtbarkeit: nach `/reload` starten alle
+  - ✅ VERIFIED 2026-11-15
+  - Owner: auf der Ingame-Test-Seite „Geht“ (2026-11-15), nachgetragen 2026-11-18.
+- [x] PT-SUITE-136 „Standard wiederherstellen“ vergisst die gespeicherte Sichtbarkeit: nach `/reload` starten alle
   Fenster wieder wie ihr Addon sie startet
+  - ✅ VERIFIED 2026-11-15
+  - Owner: auf der Ingame-Test-Seite „Geht“ (2026-11-15), nachgetragen 2026-11-18.
 
 ## Tooltips (PaTiShared)
 
-- [ ] PT-SUITE-140 Steuerfenster in der linken Bildschirmhälfte: Tooltip einer Zeile steht rechts daneben, der
+- [x] PT-SUITE-140 Steuerfenster in der linken Bildschirmhälfte: Tooltip einer Zeile steht rechts daneben, der
   Punkt und der Name bleiben sichtbar
-- [ ] PT-SUITE-141 Steuerfenster in der rechten Hälfte: Tooltip steht links daneben
+  - ✅ VERIFIED 2026-11-15
+  - Owner: auf der Ingame-Test-Seite „Geht“ (2026-11-15), nachgetragen 2026-11-18.
+- [x] PT-SUITE-141 Steuerfenster in der rechten Hälfte: Tooltip steht links daneben
+  - ✅ VERIFIED 2026-11-15
+  - Owner: auf der Ingame-Test-Seite „Geht“ (2026-11-15), nachgetragen 2026-11-18.
 - [ ] PT-SUITE-142 ••• -Button: Tooltip neben dem Button, Menü öffnet weiter; Klick und Hover auf Zeilen unverändert
 - [ ] PT-SUITE-143 Tooltip am oberen/unteren Bildschirmrand bleibt vollständig sichtbar; kein Lua-Fehler
 
@@ -164,8 +182,10 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
 - [ ] PT-SUITE-151 Gameplay-Inhalte unverändert kräftig: Lebensbalken, Warnungen, Aura-Texte, Aggro-Zeilen
 - [ ] PT-SUITE-152 Einstellungsfenster (Modals): Titel normal hell, nicht ausgegraut
 - [ ] PT-SUITE-153 ••• ist ruhig, beim Hover voll sichtbar und bedienbar; TEST-Badge im Test Mode gut sichtbar
-- [ ] PT-SUITE-154 Im Kampf am Header verschieben: Aggro, Group, Quest, Dungeon, Social, Alerts und Suite lassen sich ziehen,
+- [x] PT-SUITE-154 Im Kampf am Header verschieben: Aggro, Group, Quest, Dungeon, Social, Alerts und Suite lassen sich ziehen,
   Heal, Auras, Rota und Lead nicht (Secure-Buttons); kein Lua-Fehler, kein `ADDON_ACTION_BLOCKED`; gesperrte Fenster nie
+  - ✅ VERIFIED 2026-11-15
+  - Owner: auf der Ingame-Test-Seite „Geht“ (2026-11-15), nachgetragen 2026-11-18.
 
 ## Themes (alle Fenster)
 
