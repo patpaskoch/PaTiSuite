@@ -8,7 +8,7 @@ ns.Logic = Logic
 Logic.SCHEMA = 5
 Logic.SCALES = { 0.8, 0.9, 1, 1.1, 1.25, 1.5 }
 Logic.ORDER = { "PaTiHeal", "PaTiAuras", "PaTiAggro", "PaTiRota", "PaTiGroup", "PaTiLead", "PaTiQuest", "PaTiDungeon",
-    "PaTiSocial", "PaTiAlerts" }
+    "PaTiSocial", "PaTiFish", "PaTiAlerts" }
 Logic.LAYOUTS = { "vertical", "horizontal" }
 -- Horizontal: the row may use this share of the screen width before it wraps (PaTiSuite.lua computes the px).
 Logic.SCREEN_SHARE = 0.9
