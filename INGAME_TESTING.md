@@ -420,6 +420,8 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
 - [ ] PT-SUITE-904 In jedem PaTi-Addon unter Einstellungen → Fenster die neue Zeile „Deckkraft der Kopfzeile“
   (30–100 %): kleiner Wert → die Kopfzeile wird durchsichtiger, Titel und ••• bleiben gut lesbar; bleibt nach `/reload`;
   ohne Änderung sieht alles aus wie bisher (100 %); Theme wechseln behält die Einstellung; kein Lua-Fehler
-- [ ] PT-SUITE-905 Drei Kreise wie beim Mac (Owner 2026-11-20): mit der Maus über einem PaTi-Fenster erscheinen rechts
-  in der Kopfzeile drei runde Knöpfe (rot, gelb, grün), weg mit der Maus → wieder weg; rot blendet das Fenster aus,
-  gelb klappt ein/aus, grün öffnet das Menü; die Kreise sind rund (keine Quadrate); in jedem Addon; kein Lua-Fehler
+- [ ] PT-SUITE-905 Kopfzeilen-Symbole (Owner 2026-11-20): mit der Maus über einem PaTi-Fenster erscheinen rechts in
+  der Kopfzeile drei kleine, nicht bunte Symbole: Zahnrad (Menü), Pfeil/Chevron (einklappen; eingeklappt zeigt er nach
+  oben) und X (ausblenden); Maus weg → wieder weg; Symbole sauber gezeichnet (Zahnrad, schräges X), in jedem Addon;
+  PaTiHeal: der Mana-Knopf steht links daneben und wird nicht verdeckt; kein Lua-Fehler
+  - Owner 2026-11-20: bunte Kreise gefielen nicht, der Mana-Knopf in PaTiHeal verschwand darunter → Symbole statt Kreise
