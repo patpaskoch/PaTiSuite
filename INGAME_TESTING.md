@@ -414,3 +414,9 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
   - MANUAL RETEST REQUIRED
   - ✅ VERIFIED 2026-11-10
   - Owner: Testseite „Geht“
+
+## Kopfzeile durchsichtig (2026-11-20)
+
+- [ ] PT-SUITE-904 In jedem PaTi-Addon unter Einstellungen → Fenster die neue Zeile „Deckkraft der Kopfzeile“
+  (30–100 %): kleiner Wert → die Kopfzeile wird durchsichtiger, Titel und ••• bleiben gut lesbar; bleibt nach `/reload`;
+  ohne Änderung sieht alles aus wie bisher (100 %); Theme wechseln behält die Einstellung; kein Lua-Fehler
