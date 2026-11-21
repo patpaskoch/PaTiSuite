@@ -202,8 +202,10 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
 - [x] PT-SUITE-118 deDE und enUS: keine Überlappung; Größe 0,8 / 1,0 / 1,25 sinnvoll
   - ✅ VERIFIED 2026-11-10
   - Owner: Testseite „Geht“
-- [ ] PT-SUITE-119 Kleine Bildschirmbreite oder große Skalierung: die Reihe bricht sauber um (Button wandert mit),
+- [x] PT-SUITE-119 Kleine Bildschirmbreite oder große Skalierung: die Reihe bricht sauber um (Button wandert mit),
   nichts ragt aus dem Bildschirm
+  - ✅ VERIFIED 2026-11-21
+  - Owner: auf der Testseite mit „Geht“ bestätigt.
 
 ## Layout-Persistenz
 
@@ -374,7 +376,9 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
 - [x] PT-SUITE-081 Keine `ADDON_ACTION_BLOCKED` / `ADDON_ACTION_FORBIDDEN`
   - ✅ VERIFIED 2026-11-10
   - Owner: Testseite „Geht“
-- [ ] PT-SUITE-082 `taint.log` (`/console taintLog 1`) ohne PaTiSuite-Eintrag
+- [x] PT-SUITE-082 `taint.log` (`/console taintLog 1`) ohne PaTiSuite-Eintrag
+  - ✅ VERIFIED 2026-11-21
+  - Owner: auf der Testseite mit „Geht“ bestätigt.
 
 ## Combined
 
@@ -420,8 +424,10 @@ Regeln und Eintragen von Ergebnissen: [PaTiAdmin/docs/TESTING.md](https://github
 - [ ] PT-SUITE-904 In jedem PaTi-Addon unter Einstellungen → Fenster die neue Zeile „Deckkraft der Kopfzeile“
   (30–100 %): kleiner Wert → die Kopfzeile wird durchsichtiger, Titel und ••• bleiben gut lesbar; bleibt nach `/reload`;
   ohne Änderung sieht alles aus wie bisher (100 %); Theme wechseln behält die Einstellung; kein Lua-Fehler
-- [ ] PT-SUITE-905 Kopfzeilen-Symbole (Owner 2026-11-20): mit der Maus über einem PaTi-Fenster erscheinen rechts in
+- [x] PT-SUITE-905 Kopfzeilen-Symbole (Owner 2026-11-20): mit der Maus über einem PaTi-Fenster erscheinen rechts in
   der Kopfzeile drei kleine, nicht bunte Symbole: Zahnrad (Menü), Pfeil/Chevron (einklappen; eingeklappt zeigt er nach
   oben) und X (ausblenden); Maus weg → wieder weg; Symbole sauber gezeichnet (Zahnrad, schräges X), in jedem Addon;
   PaTiHeal: der Mana-Knopf steht links daneben und wird nicht verdeckt; kein Lua-Fehler
   - Owner 2026-11-20: bunte Kreise gefielen nicht, der Mana-Knopf in PaTiHeal verschwand darunter → Symbole statt Kreise
+  - ✅ VERIFIED 2026-11-21
+  - Owner: auf der Testseite mit „Geht“ bestätigt.
